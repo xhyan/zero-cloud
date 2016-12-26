@@ -20,3 +20,4 @@
 /cloud-eureka-server/.idea/
 !/cloud-eureka-ribbon/build.gradle
 /cloud-hystrix-dashboard/.idea/
+/spring-cloud-learn.iml
