@@ -1,0 +1,17 @@
+server:
+  port: 7001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://git.oschina.net/xhyan/spring-cloud-learn/
+          search-paths: config-server/config-repo
+          username: 343440797@qq.com
+          password: xhyan343440797

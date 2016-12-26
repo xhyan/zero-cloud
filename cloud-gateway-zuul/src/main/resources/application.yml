@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: api-gateway
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: compute-service
+server:
+  port: 5555
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/

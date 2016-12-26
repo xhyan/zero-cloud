@@ -1,0 +1,14 @@
+#指定微服务名称
+spring:
+  application:
+    name: compute-service-a
+#指定服务端口
+server:
+  port: 2001
+#指定服务中心位置
+eureka:
+  client:
+    serviceUrl.defaultZone: http://localhost:1001/eureka/
+  instance:
+    prefer-ip-address: true
+
