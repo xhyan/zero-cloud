@@ -1,41 +1,38 @@
 buildscript {
-	ext {
-		springBootVersion = '1.4.2.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-jar {
-	baseName = 'cloud-hystrix-dashboard'
-	version = '0.0.1-SNAPSHOT'
-}
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
 }
 
-
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
-	compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard')
-	compile('org.springframework.cloud:spring-cloud-starter-turbine')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+    compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard')
+    compile('org.springframework.cloud:spring-cloud-starter-turbine')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR3"
-	}
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.BUILD-SNAPSHOT'
+    }
 }
