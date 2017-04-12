@@ -1,16 +1,16 @@
-package com.xhyan.zero.eureka.client_a;
+package com.xhyan.zero.eureka.client.a;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * spring cloud eureka server 启动程序
+ * A服务启动程序
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-public class Application {
+public class ServiceAApp {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(Application.class).web(true).run(args);
+        new SpringApplicationBuilder(ServiceAApp.class).web(true).run(args);
     }
 }

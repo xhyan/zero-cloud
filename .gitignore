@@ -21,3 +21,12 @@
 !/cloud-eureka-ribbon/build.gradle
 /cloud-hystrix-dashboard/.idea/
 /spring-cloud-learn.iml
+.gradle/
+cloud-admin-dashboard/.gradle/
+cloud-admin-dashboard/build/
+cloud-config-client/.gradle/
+cloud-eureka-client-b/build/
+cloud-eureka-feign/.gradle/
+cloud-eureka-feign/build/
+cloud-eureka-server/build/
+cloud-hystrix-dashboard/build/

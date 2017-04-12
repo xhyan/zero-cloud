@@ -5,12 +5,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * spring cloud eureka server 启动程序
+ * eureka服务注册管理 启动程序
  */
 @EnableEurekaServer
 @SpringBootApplication
-public class Application {
+public class EurekaServerApp {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(Application.class).web(true).run(args);
+        new SpringApplicationBuilder(EurekaServerApp.class).run(args);
     }
 }

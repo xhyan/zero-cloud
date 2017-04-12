@@ -1,4 +1,4 @@
-package com.xhyan.zero.eureka.client_a.controller;
+package com.xhyan.zero.eureka.client.a.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;

@@ -1,14 +1,20 @@
+server:
+  port: 5555
+
 spring:
   application:
-    name: api-gateway
+    name: gateway-zuul
+
 zuul:
   routes:
     api-a:
       path: /api-a/**
       serviceId: compute-service
-server:
-  port: 5555
+
 eureka:
+  instance:
+    hostname: localhost
   client:
-    service-url:
-      defaultZone: http://localhost:1111/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl.defaultZone: http://localhost:9001/eureka/

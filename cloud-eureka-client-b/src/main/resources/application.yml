@@ -1,14 +1,16 @@
-#指定微服务名称
-spring:
-  application:
-    name: compute-service-b
 #指定服务端口
 server:
   port: 2002
+#指定微服务名称
+spring:
+  application:
+    name: compute-service
 #指定服务中心位置
 eureka:
-  client:
-    serviceUrl.defaultZone: http://localhost:1001/eureka/
   instance:
-    prefer-ip-address: true
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl.defaultZone: http://localhost:9001/eureka/
 
