@@ -5,7 +5,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * Created by xhyan on 16-11-12.
+ * 外部化配置客户端
  */
 @EnableDiscoveryClient
 @SpringBootApplication

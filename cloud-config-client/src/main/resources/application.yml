@@ -1,14 +1,13 @@
+server:
+  port: 7002
 spring:
   application:
-    name: zero
+    name: config-client
   cloud:
     config:
       discovery:
-        serviceId: config-server
+        serviceId: config-client
         enabled: true
-      profile: dev
-server:
-  port: 7002
 eureka:
   client:
     service-url:
