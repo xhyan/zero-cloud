@@ -21,10 +21,17 @@ repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
     maven { url "http://repo.spring.io/snapshot" }
-    maven { url "http://repo.spring.io/milestone" }
+    maven { url "http://repo.spring.io/snapshot" }
 }
 
 dependencies {
+    compile('com.alibaba:druid:1.0.31')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('mysql:mysql-connector-java')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.0')
+    compile('tk.mybatis:mapper-spring-boot-starter:1.1.1')
+    compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.1.1')
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
