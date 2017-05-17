@@ -29,3 +29,5 @@ cloud-eureka-feign/build/
 cloud-eureka-server/build/
 cloud-hystrix-dashboard/build/
 /cloud-config-client/build/
+
+*.class
