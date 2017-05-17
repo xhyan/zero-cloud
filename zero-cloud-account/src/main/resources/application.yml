@@ -11,6 +11,8 @@ spring:
     url: localhost
     username: xhyan
     password: 1234
+druid:
+  url: 1111
     initialSize: 111
     minIdle: 5
     maxActive: 20
@@ -40,7 +42,6 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
-
 #指定服务中心位置
 eureka:
   instance:
