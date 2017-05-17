@@ -1,4 +1,4 @@
-package com.xhyan.zero.eureka.client.a;
+package com.xhyan.zero.cloud.account;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

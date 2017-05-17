@@ -1,4 +1,4 @@
-package com.xhyan.zero.eureka.client.a.controller;
+package com.xhyan.zero.cloud.account.controller;
 
 /**
  * 账户服务

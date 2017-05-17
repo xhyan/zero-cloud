@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+    compile('org.projectlombok:lombok:1.16.16')
     compile('com.alibaba:druid:1.0.31')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('mysql:mysql-connector-java')
