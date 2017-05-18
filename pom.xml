@@ -14,7 +14,15 @@
     </parent>
 
     <modules>
+        <module>zero-cloud-gateway</module>
+        <module>zero-cloud-eureka</module>
         <module>zero-cloud-account</module>
+        <module>zero-cloud-member</module>
+        <module>zero-cloud-feign</module>
+        <module>zero-cloud-ribbon</module>
+        <module>zero-cloud-config</module>
+        <module>zero-hystrix-dashboard</module>
+        <module>zero-admin-dashboard</module>
     </modules>
 
     <dependencyManagement>
