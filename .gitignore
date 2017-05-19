@@ -1,29 +1,2 @@
-将删除 cloud-config-client/build/
-将删除 cloud-config-server/build/
-将删除 cloud-eureka-client/.gradle/
-将删除 cloud-eureka-client/build/
-将删除 cloud-eureka-feign/.gradle/
-将删除 cloud-eureka-feign/build/
-将删除 cloud-eureka-ribbon/.gradle/
-将删除 cloud-eureka-ribbon/build/
-将删除 cloud-eureka-server/.gradle/
-将删除 cloud-eureka-server/build/
 
 /.idea/
-.gradle/
-/zero-admin-dashboard/.idea/
-/zero-cloud-config/cloud-config-server.iml
-/zero-cloud-feign/.idea/
-/zero-cloud-ribbon/.idea/
-/zero-cloud-eureka/.idea/
-/zero-hystrix-dashboard/.idea/
-/spring-cloud-learn.iml
-zero-admin-dashboard/.gradle/
-zero-admin-dashboard/build/
-zero-cloud-config/.gradle/
-zero-cloud-member/build/
-zero-cloud-feign/.gradle/
-zero-cloud-feign/build/
-zero-cloud-eureka/build/
-zero-hystrix-dashboard/build/
-/zero-cloud-config/build/
