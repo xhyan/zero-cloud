@@ -1,15 +1,14 @@
-
 #指定服务端口
 server:
   port: 2001
 #指定微服务名称
 spring:
   application:
-    name: compute-service
+    name: account-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/zero_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
     username: xhyan
     password: 1234
     druid:
@@ -28,12 +27,12 @@ spring:
       filters: stat,wall,slf4j
 #mybatis配置
 mybatis:
-  type-aliases-package: tk.mybatis.springboot.model
+  type-aliases-package: com.xhyan.zero.cloud.account.model
   mapper-locations: classpath:mapper/*.xml
 #通用mapper配置
 mapper:
   mappers:
-    - tk.mybatis.springboot.util.MyMapper
+    - tk.mybatis.mapper.common.Mapper
   not-empty: false
   identity: MYSQL
 #pagehelper配置
@@ -52,8 +51,8 @@ eureka:
     serviceUrl.defaultZone: http://localhost:9001/eureka/
 #flyway 数据库版本管理工具
 flyway:
-  url: jdbc:mysql://127.0.0.1:3306/zero_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
+  url: jdbc:mysql://127.0.0.1:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: xhyan
   password: 1234
-  enabled: false
-debug: true
+  enabled: true
+debug: false

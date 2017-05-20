@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * AccountService
  */
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @SpringBootApplication
 public class AccountServiceApp {
     public static void main(String[] args) {

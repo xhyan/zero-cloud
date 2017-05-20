@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+        <!--屏蔽注释信息-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/cloud_account"
+                        userId="xhyan"
+                        password="1234">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+
+        <!--生成java 数据库实体类-->
+        <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}">
+            <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="com.xhyan.zero.cloud.account.model.BaseModel"/>
+        </javaModelGenerator>
+        <!--生成mapper xml文件-->
+        <sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourcesProject}"/>
+        <!--生成mapper 接口-->
+        <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"
+                             type="XMLMAPPER"/>
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--忽略数据库中基础字段-->
+            <ignoreColumn column="id"/>
+            <ignoreColumn column="gmt_create"/>
+            <ignoreColumn column="gmt_modify"/>
+        </table>
+    </context>
+</generatorConfiguration>

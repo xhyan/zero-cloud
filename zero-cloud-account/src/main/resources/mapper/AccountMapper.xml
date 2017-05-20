@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhyan.zero.cloud.account.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.xhyan.zero.cloud.account.model.Account">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="trade_pwd" jdbcType="VARCHAR" property="tradePwd" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="email_backup" jdbcType="VARCHAR" property="emailBackup" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+  </resultMap>
+</mapper>
