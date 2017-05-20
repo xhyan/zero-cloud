@@ -24,6 +24,10 @@ public abstract class BaseService<T> {
         return mapper.deleteByPrimaryKey(entity);
     }
 
+    public T selectByPrimaryKey(Long id){
+        return mapper.selectByPrimaryKey(id);
+    }
+
     /**
      * 单表分页查询
      *

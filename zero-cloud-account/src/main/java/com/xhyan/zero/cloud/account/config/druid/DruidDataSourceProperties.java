@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Druid数据连接池的配置项
- *
+ * <p>
  * TODO 后期改为阿里官方的spring boot start，现在没有稳定版
  */
 @Data
@@ -16,8 +16,9 @@ public class DruidDataSourceProperties {
     private String password;
     private String driverClass;
 
-    private int     maxActive;
-    private int     minIdle;
-    private int     initialSize;
+    private int maxActive;
+    private int minIdle;
+    private long maxWait;
+    private int initialSize;
     private boolean testOnBorrow;
 }

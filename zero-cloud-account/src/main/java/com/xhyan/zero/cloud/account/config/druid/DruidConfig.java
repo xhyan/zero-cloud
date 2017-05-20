@@ -41,6 +41,9 @@ public class DruidConfig {
         if (druidDataSourceProperties.getMaxActive() > 0) {
             dataSource.setMaxActive(druidDataSourceProperties.getMaxActive());
         }
+        if (druidDataSourceProperties.getMaxWait() > 0){
+            dataSource.setMaxWait(druidDataSourceProperties.getMaxWait());
+        }
         dataSource.setTestOnBorrow(druidDataSourceProperties.isTestOnBorrow());
         try {
             dataSource.init();
