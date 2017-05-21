@@ -1,7 +1,11 @@
 package com.xhyan.zero.cloud.account.dto.base;
 
+import lombok.Data;
+
 /**
- * Created by xhyan on 17-5-20.
+ * 基础的DTO信息
  */
+@Data
 public class BaseDTO {
+    private Long id;
 }

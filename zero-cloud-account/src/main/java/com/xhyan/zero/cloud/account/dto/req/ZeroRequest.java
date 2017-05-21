@@ -1,7 +1,15 @@
 package com.xhyan.zero.cloud.account.dto.req;
 
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
+
 /**
- * Created by xhyan on 17-5-20.
+ * Zero Cloud 的请求对象
+ *
+ * @author xhyan
  */
-public class ZeroRequest {
+@Data
+@ApiModel
+public class ZeroRequest<T> {
+    private T t;
 }
