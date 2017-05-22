@@ -5,7 +5,6 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
     <result column="trade_pwd" jdbcType="VARCHAR" property="tradePwd" />
@@ -14,8 +13,6 @@
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="type" jdbcType="TINYINT" property="type" />
     <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
-    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
     <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
   </resultMap>
 </mapper>

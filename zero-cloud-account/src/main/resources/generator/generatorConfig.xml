@@ -41,12 +41,22 @@
         <!--生成mapper 接口-->
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"
                              type="XMLMAPPER"/>
-        <table tableName="%">
+        <!--<table tableName="%">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+            <!--&lt;!&ndash;忽略数据库中基础字段&ndash;&gt;-->
+            <!--<ignoreColumn column="id"/>-->
+            <!--<ignoreColumn column="gmt_create"/>-->
+            <!--<ignoreColumn column="gmt_modify"/>-->
+        <!--</table>-->
+
+        <table tableName="account">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--忽略数据库中基础字段-->
             <ignoreColumn column="id"/>
             <ignoreColumn column="gmt_create"/>
             <ignoreColumn column="gmt_modify"/>
+            <columnOverride column="type" javaType="Integer" jdbcType="TINYINT"/>
+            <columnOverride column="status" javaType="Integer" jdbcType="TINYINT"/>
         </table>
     </context>
 </generatorConfiguration>

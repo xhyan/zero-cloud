@@ -114,6 +114,12 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>com.baidu.unbiz</groupId>
+            <artifactId>easy-mapper</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
 
 

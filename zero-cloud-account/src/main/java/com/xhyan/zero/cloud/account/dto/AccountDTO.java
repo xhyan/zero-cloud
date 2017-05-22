@@ -1,5 +1,7 @@
 package com.xhyan.zero.cloud.account.dto;
 
+import com.xhyan.zero.cloud.account.converter.annotations.Convert;
+import com.xhyan.zero.cloud.account.model.Account;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,6 +13,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel
+@Convert(target = Account.class)
 public class AccountDTO {
     /**
      * 登录名

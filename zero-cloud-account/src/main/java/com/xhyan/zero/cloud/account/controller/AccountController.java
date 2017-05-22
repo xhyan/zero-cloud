@@ -1,5 +1,6 @@
 package com.xhyan.zero.cloud.account.controller;
 
+import com.xhyan.zero.cloud.account.converter.Converter;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.service.AccountService;
@@ -24,13 +25,14 @@ public class AccountController {
             @ApiResponse(code = 405, message = "参数错误")
     })
     public boolean save(@ApiParam(required = true, value = "account data") @RequestBody AccountDTO account) {
-        Account acc = new Account();
+        Account acc = Converter.CONVERTER.convert(account, Account.class);
         return accountService.save(acc) > 0;
     }
 
     @ApiOperation(notes = "test", httpMethod = "GET", value = "测试接口")
     @GetMapping(value = "/test", produces = {"application/json;charset=UTF-8"})
     public String test(){
+
         return "test";
     }
 }
