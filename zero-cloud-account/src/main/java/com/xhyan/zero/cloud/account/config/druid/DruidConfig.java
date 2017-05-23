@@ -20,7 +20,7 @@ import java.sql.SQLException;
 @ConditionalOnClass({DruidDataSource.class})
 @AutoConfigureBefore(DataSourceAutoConfiguration.class)
 @EnableConfigurationProperties(DruidDataSourceProperties.class)
-@ConditionalOnProperty(prefix = "spring.datasource.druid", name = "url")
+@ConditionalOnProperty(prefix = "spring.datasource.druid")
 public class DruidConfig {
 
     @Autowired

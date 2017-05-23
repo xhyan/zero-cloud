@@ -23,6 +23,7 @@
         <module>zero-cloud-config</module>
         <module>zero-hystrix-dashboard</module>
         <module>zero-admin-dashboard</module>
+        <module>zero-cloud-common</module>
     </modules>
 
     <dependencyManagement>

@@ -1,7 +1,8 @@
 package com.xhyan.zero.cloud.account.converter;
 
+import com.baidu.unbiz.easymapper.CopyByRefMapper;
 import com.baidu.unbiz.easymapper.MapperFactory;
-import sun.reflect.annotation.AnnotationParser;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,9 @@ import java.util.stream.Collectors;
 public enum Converter {
 
     CONVERTER;
+
+    @Autowired
+    private CopyByRefMapper copyByRefMapper;
     /**
      * 对象转换，转换的对象必须是已注册的对象
      *

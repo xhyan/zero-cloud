@@ -114,11 +114,22 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <!--实体映射工具-->
         <dependency>
             <groupId>com.baidu.unbiz</groupId>
             <artifactId>easy-mapper</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <!--注解解析工具-->
+        <dependency>
+            <groupId>eu.infomas</groupId>
+            <artifactId>annotation-detector</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
         </dependency>
     </dependencies>
 

@@ -6,5 +6,4 @@ package com.xhyan.zero.cloud.account.converter.annotations;
  * @author xhyan
  */
 public @interface TargetMapping {
-
 }

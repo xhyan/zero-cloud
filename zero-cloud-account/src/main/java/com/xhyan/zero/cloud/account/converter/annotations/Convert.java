@@ -16,8 +16,13 @@ public @interface Convert {
     Class<?> target() default Void.class;
 
     /**
-     * 是否是单向转换
+     * 是否是单向映射
      * */
     boolean unidirection() default false;
+
+    /**
+     * 空属性是否映射
+     * */
+    boolean mapOnNull() default false;
 
 }
