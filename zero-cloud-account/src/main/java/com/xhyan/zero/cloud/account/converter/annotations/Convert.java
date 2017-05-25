@@ -13,7 +13,7 @@ public @interface Convert {
      * 需要转换的目标对象
      * @return
      */
-    Class<?> target() default Void.class;
+    Class<?> target();
 
     /**
      * 是否是单向映射

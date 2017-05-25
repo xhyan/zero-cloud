@@ -11,20 +11,20 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
     username: xhyan
     password: 1234
-    druid:
-      initialSize: 111
-      minIdle: 5
-      maxActive: 20
-      maxWait: 60000
-      timeBetweenEvictionRunsMillis: 60000
-      minEvictableIdleTimeMillis: 30000
-      validationQuery: SELECT 'x'
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      poolPreparedStatements: true
-      maxPoolPreparedStatementPerConnectionSize: 20
-      filters: stat,wall,slf4j
+    initialSize: 10
+    minIdle: 5
+    maeBetweenEvictionRunsMillis: 60000
+    minxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,slf4j
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model
@@ -55,4 +55,4 @@ flyway:
   user: xhyan
   password: 1234
   enabled: true
-debug: false
+debug: true

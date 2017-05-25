@@ -2,7 +2,6 @@ package com.xhyan.zero.cloud.account.converter;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
@@ -20,6 +19,8 @@ public class ConverterProperties {
     private List<String> scanPackages;
     /*是否单向转换*/
     private boolean unidirection;
+    /*是否映射空值*/
+    private boolean mapOnNull = true;
     /*是否惰性*/
     private boolean lazy;
 }
