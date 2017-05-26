@@ -56,3 +56,8 @@ flyway:
   password: 1234
   enabled: true
 debug: true
+zero:
+  converter:
+    scan:
+      - com.xhyan.zero.cloud.account.dto
+    enable: true

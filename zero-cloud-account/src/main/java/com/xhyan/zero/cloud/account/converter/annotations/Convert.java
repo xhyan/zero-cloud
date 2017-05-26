@@ -1,5 +1,7 @@
 package com.xhyan.zero.cloud.account.converter.annotations;
 
+import com.baidu.unbiz.easymapper.codegen.AtoBMapping;
+
 import java.lang.annotation.*;
 
 /**
@@ -16,13 +18,14 @@ public @interface Convert {
     Class<?> target();
 
     /**
-     * 是否是单向映射
-     * */
-    boolean unidirection() default false;
-
-    /**
      * 空属性是否映射
      * */
     boolean mapOnNull() default false;
+
+    /**
+     * 自定义映射规则，AtoBMapping接口的实现类
+     * @return
+     */
+    Class<? extends AtoBMapping> mapping() default AtoBMapping.class;
 
 }

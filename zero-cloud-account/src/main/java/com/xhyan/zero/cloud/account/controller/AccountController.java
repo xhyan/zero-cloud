@@ -32,7 +32,6 @@ public class AccountController {
     @ApiOperation(notes = "test", httpMethod = "GET", value = "测试接口")
     @GetMapping(value = "/test", produces = {"application/json;charset=UTF-8"})
     public String test(){
-
         return "test";
     }
 }

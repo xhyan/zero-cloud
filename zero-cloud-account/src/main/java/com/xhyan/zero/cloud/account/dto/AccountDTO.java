@@ -1,6 +1,7 @@
 package com.xhyan.zero.cloud.account.dto;
 
 import com.xhyan.zero.cloud.account.converter.annotations.Convert;
+import com.xhyan.zero.cloud.account.converter.annotations.ConvertRule;
 import com.xhyan.zero.cloud.account.model.Account;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,12 +25,14 @@ public class AccountDTO {
     /**
      * 登录密码(不可逆加密)
      */
+    @ConvertRule(targetField = "tradePwd")
     @ApiModelProperty(value = "登录密码", required = true)
     private String loginPwd;
 
     /**
      * 交易密码(不可逆加密)
      */
+    @ConvertRule(ignore = true)
     @ApiModelProperty(hidden = true)
     private String tradePwd;
 
