@@ -1,6 +1,8 @@
 package com.xhyan.zero.cloud.account.controller;
 
+import com.google.gson.Gson;
 import com.xhyan.zero.cloud.account.converter.Converter;
+import com.xhyan.zero.cloud.account.converter.annotations.Convert;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.service.AccountService;
@@ -32,6 +34,16 @@ public class AccountController {
     @ApiOperation(notes = "test", httpMethod = "GET", value = "测试接口")
     @GetMapping(value = "/test", produces = {"application/json;charset=UTF-8"})
     public String test(){
-        return "test";
+        AccountDTO dto = new AccountDTO();
+        dto.setId(1L);
+        dto.setEmail("2222222");
+        dto.setLoginName("xhyan");
+        dto.setLoginPwd("1234");
+        dto.setTradePwd("4321");
+        dto.setMobile("15208285260");
+        dto.setStatus(1);
+        dto.setType(2);
+        Account account = Converter.CONVERTER.convert(dto, Account.class);
+        return new Gson().toJson(account);
     }
 }

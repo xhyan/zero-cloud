@@ -14,6 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan(basePackages = "com.xhyan.zero.cloud.account.mapper")
 public class AccountApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(AccountApplication.class).web(true).run(args);
+        new SpringApplicationBuilder(AccountApplication.class).run(args);
     }
 }

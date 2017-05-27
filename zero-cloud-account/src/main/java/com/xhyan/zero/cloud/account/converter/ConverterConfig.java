@@ -2,12 +2,16 @@ package com.xhyan.zero.cloud.account.converter;
 
 import com.baidu.unbiz.easymapper.ClassMapBuilder;
 import com.baidu.unbiz.easymapper.CopyByRefMapper;
+import com.baidu.unbiz.easymapper.Mapper;
+import com.baidu.unbiz.easymapper.MapperFactory;
 import com.baidu.unbiz.easymapper.codegen.AtoBMapping;
+import com.baidu.unbiz.easymapper.exception.MappingException;
 import com.baidu.unbiz.easymapper.transformer.Transformer;
 import com.xhyan.zero.cloud.account.converter.annotations.Convert;
 import com.xhyan.zero.cloud.account.converter.annotations.ConvertRule;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -21,11 +25,15 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.CollectionUtils;
 
-import java.io.File;
+import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.net.URL;
-import java.util.*;
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 实体转换器的配置类
@@ -34,8 +42,9 @@ import java.util.*;
  */
 @Configuration
 @EnableAutoConfiguration
+@AutoConfigureBefore(value = Convert.class)
 @EnableConfigurationProperties(ConverterProperties.class)
-@ConditionalOnProperty
+@ConditionalOnProperty(value = "zero.converter.enable", havingValue = "true")
 public class ConverterConfig {
 
     private static final String RESOURCE_PATTERN = "/**/*.class";
@@ -44,17 +53,21 @@ public class ConverterConfig {
     @Autowired
     private ConverterProperties converterProperties;
 
-    @Bean
-    public CopyByRefMapper CopyByRefMapper() {
-        CopyByRefMapper mapper = new CopyByRefMapper();
+    @PostConstruct
+    public void init() {
         //扫描并获取带@Convert注解的类
-        List<Class> classes = this.scanPackages();
-        classes.stream().filter(clazz -> clazz.isAnnotationPresent(Convert.class)).peek((Class clazz) -> {
+        List<String> scanPackages = converterProperties.getScanPackages();
+        if (CollectionUtils.isEmpty(scanPackages)) {
+            throw new MappingException("scanPackages in properties is empty. can not init Converter");
+        }
+        //获取配置的包路径下@Convert注解的类
+        List<Class> classes = scanPackages.stream().flatMap(scanPackage -> this.scanPackages(scanPackage).stream()).collect(Collectors.toList());
+        classes.stream().filter(clazz -> clazz.isAnnotationPresent(Convert.class)).forEach((Class clazz) -> {
             //获取类上的@Convert注解
             Convert convert = (Convert) clazz.getAnnotation(Convert.class);
             //得到目标类
             Class<?> target = convert.target();
-            ClassMapBuilder aToBBuilder = mapper.mapClass(clazz, target).mapOnNull(converterProperties.isMapOnNull());//映射需要转换的类
+            ClassMapBuilder aToBBuilder = MapperFactory.getCopyByRefMapper().mapClass(clazz, target).mapOnNull(converterProperties.isMapOnNull());//映射需要转换的类
             Class<? extends AtoBMapping> mapping = convert.mapping();
             if (!mapping.equals(AtoBMapping.class) && mapping.isAssignableFrom(AtoBMapping.class)) {
                 try {
@@ -65,18 +78,16 @@ public class ConverterConfig {
                     e.printStackTrace();
                 }
             } else {
+
                 List<String> aIgnores = Lists.newArrayList();
-                Arrays.stream(clazz.getFields())
-                        .filter(field -> {
-                            //过滤调自定已注解ConvertRule中，ignore为true的属性
-                            if (field.isAnnotationPresent(ConvertRule.class) && !field.getAnnotation(ConvertRule.class).ignore()) {
-                                aIgnores.add(field.getName());
-                                return true;
-                            }
-                            return false;
-                        })
-                        .peek(field -> {
+                Arrays.stream(clazz.getDeclaredFields()).filter(field -> field.isAnnotationPresent(ConvertRule.class))
+                        .forEach(field -> {
                             ConvertRule rule = field.getAnnotation(ConvertRule.class);
+
+                            if (rule.ignore()) {
+                                aIgnores.add(field.getName());
+                                return;
+                            }
                             //注解中了设置targetField，直接取。若未设置，目标属性跟当前属性名称取相同值
                             String targetField = Optional.ofNullable(rule.targetField()).orElse(field.getName());
                             Class<? extends Transformer> transClass = rule.transformer();
@@ -91,20 +102,21 @@ public class ConverterConfig {
                             } else {
                                 aToBBuilder.field(field.getName(), targetField);
                             }
+
                         });
                 //设置映射器忽略的字段
-                aToBBuilder.exclude((String[]) aIgnores.stream().toArray());
+                if (!CollectionUtils.isEmpty(aIgnores)) {
+                    aToBBuilder.exclude(aIgnores.toArray(new String[aIgnores.size()]));
+                }
                 aToBBuilder.register();
             }
         });
-
-        return mapper;
+        MapperFactory.getCopyByRefMapper();
     }
 
-    private List<Class> scanPackages() {
-        String packagename = "";
+    private List<Class> scanPackages(String packageName) {
         String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX +
-                ClassUtils.convertClassNameToResourcePath(packagename) + RESOURCE_PATTERN;
+                ClassUtils.convertClassNameToResourcePath(packageName) + RESOURCE_PATTERN;
 
         Resource[] resources = new Resource[0];
         try {
@@ -120,7 +132,7 @@ public class ConverterConfig {
             try {
                 reader = readerFactory.getMetadataReader(resource);
                 String className = reader.getClassMetadata().getClassName();
-                if (typeFilter.match(reader, readerFactory)){
+                if (typeFilter.match(reader, readerFactory)) {
                     classList.add(Class.forName(className));
                 }
             } catch (IOException e) {
