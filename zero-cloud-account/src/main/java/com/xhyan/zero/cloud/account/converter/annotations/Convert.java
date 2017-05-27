@@ -12,6 +12,10 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Convert {
     /**
+     * 规则分组
+     */
+    String group() default "zero";
+    /**
      * 需要转换的目标对象
      * @return
      */

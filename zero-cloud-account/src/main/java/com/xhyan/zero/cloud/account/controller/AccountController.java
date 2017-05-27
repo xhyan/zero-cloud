@@ -33,16 +33,8 @@ public class AccountController {
 
     @ApiOperation(notes = "test", httpMethod = "GET", value = "测试接口")
     @GetMapping(value = "/test", produces = {"application/json;charset=UTF-8"})
-    public String test(){
-        AccountDTO dto = new AccountDTO();
-        dto.setId(1L);
-        dto.setEmail("2222222");
-        dto.setLoginName("xhyan");
-        dto.setLoginPwd("1234");
-        dto.setTradePwd("4321");
-        dto.setMobile("15208285260");
-        dto.setStatus(1);
-        dto.setType(2);
+    public String test() {
+        AccountDTO dto = AccountDTO.builder().email("222222").loginName("xhyan").loginPwd("1234").tradePwd("4321").status(1).build();
         Account account = Converter.CONVERTER.convert(dto, Account.class);
         return new Gson().toJson(account);
     }

@@ -12,7 +12,11 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConvertRule {
+public @interface Rule {
+    /**
+     * 规则分组
+     */
+    String group() default "zero";
 
     /**
      * 转换时是否忽略该字段
