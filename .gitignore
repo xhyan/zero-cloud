@@ -3,3 +3,4 @@
 /zero-cloud-account/build/
 
 *.iml
+zero-cloud-account/target/classes/
