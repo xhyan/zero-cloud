@@ -1,16 +1,9 @@
 package com.xhyan.zero.cloud.account.dto;
 
-import com.xhyan.zero.cloud.account.converter.annotations.Convert;
-import com.xhyan.zero.cloud.account.converter.annotations.Converts;
-import com.xhyan.zero.cloud.account.converter.annotations.Rule;
-import com.xhyan.zero.cloud.account.converter.annotations.Rules;
 import com.xhyan.zero.cloud.account.dto.base.BaseDTO;
-import com.xhyan.zero.cloud.account.model.Account;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Setter;
 
 /**
  * Account DTO
@@ -18,13 +11,8 @@ import lombok.Setter;
  * @author xhyan
  */
 @ApiModel
-@Builder
-@Converts(coverts = {
-        @Convert(group = "11", target = Account.class),
-        @Convert(group = "22", target = AccountDTO2.class)
-})
 @Data
-public class AccountDTO extends BaseDTO {
+public class AccountDTO2 extends BaseDTO {
     /**
      * 登录名
      */
@@ -34,20 +22,12 @@ public class AccountDTO extends BaseDTO {
     /**
      * 登录密码(不可逆加密)
      */
-    @Rules(rules = {
-            @Rule(group = "11", targetField = "tradePwd"),
-            @Rule(group = "22", targetField = "mobile")
-    })
     @ApiModelProperty(value = "登录密码", required = true)
     private String loginPwd;
 
     /**
      * 交易密码(不可逆加密)
      */
-    @Rules(rules = {
-            @Rule(group = "11", ignore = true),
-            @Rule(group = "22", targetField = "loginPwd")
-    })
     @ApiModelProperty(hidden = true)
     private String tradePwd;
 
