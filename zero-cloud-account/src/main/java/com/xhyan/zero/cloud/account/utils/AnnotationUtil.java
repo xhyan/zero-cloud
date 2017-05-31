@@ -1,5 +1,6 @@
 package com.xhyan.zero.cloud.account.utils;
 
+import lombok.SneakyThrows;
 import org.assertj.core.util.Lists;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -10,10 +11,11 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.util.ClassUtils;
 
-import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * 注解工具类
@@ -30,35 +32,30 @@ public class AnnotationUtil {
      * @param packageName
      * @return
      */
-    public static List<Class> scanPackages(String packageName, Class<? extends Annotation> annotation) {
-        String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX +
-                ClassUtils.convertClassNameToResourcePath(packageName) + RESOURCE_PATTERN;
+    @SneakyThrows
+    public static List<Class> scanPackages(Class<? extends Annotation> annotation, String... packageName) {
 
         MetadataReaderFactory readerFactory = new CachingMetadataReaderFactory(resolver);
-        List<Class> classList = Lists.newArrayList();
         AnnotationTypeFilter typeFilter = new AnnotationTypeFilter(annotation, false);
+        List<Resource> resources = Arrays.stream(packageName).flatMap(packages -> {
+            String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX +
+                    ClassUtils.convertClassNameToResourcePath(packages) + RESOURCE_PATTERN;
+            return Arrays.stream(resolver.getResources(pattern));
+        }).collect(Collectors.toList());
 
-        Resource[] resources = new Resource[0];
-        try {
-            resources = resolver.getResources(pattern);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Arrays.stream(resources).filter(resource -> resource.isReadable()).forEach(resource -> {
-            MetadataReader reader = null;
-            try {
-                reader = readerFactory.getMetadataReader(resource);
-                String className = reader.getClassMetadata().getClassName();
-                if (typeFilter.match(reader, readerFactory)) {
-                    classList.add(Class.forName(className));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
+        List<Class> classList = Lists.newArrayList();
+        resources.stream().filter(resource -> resource.isReadable()).forEach(uncheckedConsumer(readerFactory, typeFilter, classList));
         return classList;
+    }
+
+    @SneakyThrows
+    private static Consumer<Resource> uncheckedConsumer(MetadataReaderFactory readerFactory, AnnotationTypeFilter typeFilter, List<Class> classList) {
+        return resource -> {
+            MetadataReader reader = readerFactory.getMetadataReader(resource);
+            String className = reader.getClassMetadata().getClassName();
+            if (typeFilter.match(reader, readerFactory)) {
+                classList.add(Class.forName(className));
+            }
+        };
     }
 }

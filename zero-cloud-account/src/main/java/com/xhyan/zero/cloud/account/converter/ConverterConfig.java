@@ -12,6 +12,7 @@ import com.xhyan.zero.cloud.account.converter.annotations.Rules;
 import com.xhyan.zero.cloud.account.converter.mapper.ZeroConvertMapper;
 import com.xhyan.zero.cloud.account.utils.AnnotationUtil;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -37,36 +38,34 @@ import java.util.stream.Collectors;
 @ConditionalOnProperty(value = "zero.converter.enable", havingValue = "true")
 public class ConverterConfig {
 
-
     @Autowired
     private ConverterProperties converterProperties;
 
     @PostConstruct
-    public void init() {
+    public void initMapping() {
         //扫描并获取带@Convert注解的类
-        List<String> scanPackages = converterProperties.getScanPackages();
-        if (CollectionUtils.isEmpty(scanPackages)) {
+        String scanPackages = converterProperties.getScanPackages();
+        if (StringUtils.isBlank(scanPackages)) {
             throw new MappingException("scanPackages in properties is empty. can not init Converter");
         }
-        //获取配置的包路径下@Convert注解的类
-        List<Class> convertClasses = scanPackages.stream().flatMap(scanPackage -> AnnotationUtil.scanPackages(scanPackage, Convert.class).stream())
-                .collect(Collectors.toList());
 
         //获取配置的包路径下@Converts注解的类
-        List<Class> convertsClasses = scanPackages.stream().flatMap(scanPackage -> AnnotationUtil.scanPackages(scanPackage, Converts.class).stream())
-                .collect(Collectors.toList());
-
-        convertClasses.forEach(clazz -> {
-            this.parsingConvert(clazz);
-        });
-
-        convertsClasses.forEach(clazz -> {
-            this.parsingConverts(clazz);
-        });
+        List<Class> convertsClasses = AnnotationUtil.scanPackages(Converts.class, StringUtils.split(","));
+        //解析@Converts注解
+        convertsClasses.forEach(clazz -> this.parsingConverts(clazz));
+        //获取配置的包路径下@Convert注解的类
+        List<Class> convertClasses = AnnotationUtil.scanPackages(Convert.class, StringUtils.split(","));
+        //解析@Convert注解
+        convertClasses.forEach(clazz -> this.parsingConvert(clazz));
     }
 
-
-    @SneakyThrows
+    /**
+     * 解析@Convert注解及@Rule注解
+     *
+     * @param clazz
+     * @see Convert
+     * @see Rule
+     */
     private ClassMapBuilder parsingConvert(Class clazz) {
         Convert convert = (Convert) clazz.getDeclaredAnnotation(Convert.class);
         //得到目标类
@@ -75,7 +74,7 @@ public class ConverterConfig {
         Class<? extends AtoBMapping> mapping = convert.mapping();
         if (!mapping.equals(AtoBMapping.class) && mapping.isAssignableFrom(AtoBMapping.class)) {
             //定义了自定义映射，直接走自定义映射
-            aToBBuilder.customMapping(mapping.newInstance());
+            aToBBuilder.customMapping(this.getInstance(mapping));
         } else {
             List<String> aIgnores = Lists.newArrayList();
             Arrays.stream(clazz.getDeclaredFields())
@@ -91,13 +90,7 @@ public class ConverterConfig {
                         String targetField = Optional.ofNullable(rule.targetField()).orElse(field.getName());
                         Class<? extends Transformer> transClass = rule.transformer();
                         if (!transClass.equals(Transformer.class) && transClass.isAssignableFrom(Transformer.class)) {
-                            try {
-                                aToBBuilder.field(field.getName(), targetField, transClass.newInstance());
-                            } catch (InstantiationException e) {
-                                e.printStackTrace();
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            }
+                            aToBBuilder.field(field.getName(), targetField, this.getInstance(transClass));
                         } else {
                             aToBBuilder.field(field.getName(), targetField);
                         }
@@ -111,6 +104,13 @@ public class ConverterConfig {
         return aToBBuilder;
     }
 
+    /**
+     * 解析@Converts注解及@Rules注解
+     *
+     * @param clazz
+     * @see Converts
+     * @see Rules
+     */
     private void parsingConverts(Class clazz) {
         //k -- group, v -- aToBBuilder
         Map<String, ClassMapBuilder> builderMap = Maps.newHashMap();
@@ -131,13 +131,7 @@ public class ConverterConfig {
                     Class<? extends AtoBMapping> mapping = convert.mapping();
                     if (!mapping.equals(AtoBMapping.class) && mapping.isAssignableFrom(AtoBMapping.class)) {
                         //定义了自定义映射，直接走自定义映射
-                        try {
-                            builderMap.get(convert.group()).customMapping(mapping.newInstance());
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
+                        builderMap.get(convert.group()).customMapping(this.getInstance(mapping));
                     } else {
                         Arrays.stream(clazz.getDeclaredFields())
                                 .filter(field -> field.isAnnotationPresent(Rules.class))
@@ -156,13 +150,7 @@ public class ConverterConfig {
                                         String targetField = Optional.ofNullable(rule.targetField()).orElse(field.getName());
                                         Class<? extends Transformer> transClass = rule.transformer();
                                         if (!transClass.equals(Transformer.class) && transClass.isAssignableFrom(Transformer.class)) {
-                                            try {
-                                                builderMap.get(rule.group()).field(field.getName(), targetField, transClass.newInstance());
-                                            } catch (InstantiationException e) {
-                                                e.printStackTrace();
-                                            } catch (IllegalAccessException e) {
-                                                e.printStackTrace();
-                                            }
+                                            builderMap.get(rule.group()).field(field.getName(), targetField, this.getInstance(transClass));
                                         } else {
                                             builderMap.get(rule.group()).field(field.getName(), targetField);
                                         }
@@ -179,39 +167,10 @@ public class ConverterConfig {
         builderMap.forEach((group, builder) -> builder.register());
 
     }
-//    /**
-//     * 类自定义映射规则
-//     *
-//     * @param mapBuilder
-//     * @param mapping
-//     */
-//    private void customMapping(ClassMapBuilder mapBuilder, Class<? extends AtoBMapping> mapping) {
-//        try {
-//            mapBuilder.customMapping(mapping.newInstance()).register();
-//        } catch (InstantiationException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    /**
-//     * 属性自定义转换规则
-//     *
-//     * @param mapBuilder
-//     * @param field
-//     * @param targetField
-//     * @param transClass
-//     */
-//    private void fieldCustomTransformer(ClassMapBuilder mapBuilder, String field, String targetField, Class<? extends Transformer> transClass) {
-//        try {
-//            mapBuilder.field(field, targetField, transClass.newInstance());
-//        } catch (InstantiationException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
+    @SneakyThrows
+    private <T> T getInstance(Class<T> tClass) {
+        return tClass.newInstance();
+    }
 
 }

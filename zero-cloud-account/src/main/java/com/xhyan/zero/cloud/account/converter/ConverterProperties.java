@@ -16,7 +16,7 @@ public class ConverterProperties {
     /*是否开启转换器*/
     private boolean enable;
     /*转换器需要扫面的包路径*/
-    private List<String> scanPackages;
+    private String scanPackages;
     /*是否映射空值*/
     private boolean mapOnNull = true;
     /*是否惰性*/
