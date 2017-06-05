@@ -28,12 +28,13 @@ public class AccountController {
     })
     public boolean save(@ApiParam(required = true, value = "account data") @RequestBody AccountDTO account) {
         Account acc = Converter.convert(account, Account.class);
+        acc.setStatus(1);
         return accountService.save(acc) > 0;
     }
 
     @ApiOperation(notes = "query one account", httpMethod = "GET", value = "查询单个账户")
     @GetMapping(value = "/account/{accountId}")
-    public ZeroResponse queryOne(@ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
+    public ZeroResponse<AccountDTO> queryOne(@ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
         Account account = accountService.selectByPrimaryKey(accountId);
         return ZeroResponse.success(Converter.convert(account, AccountDTO.class));
     }

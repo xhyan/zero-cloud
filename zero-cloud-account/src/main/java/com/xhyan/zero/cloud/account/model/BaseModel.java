@@ -14,12 +14,6 @@ import java.util.Date;
 @Data
 public class BaseModel {
     /**
-     * ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    /**
      * 创创create date
      */
     @Column(name = "gmt_create")

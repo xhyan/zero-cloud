@@ -1,4 +1,4 @@
-package com.xhyan.zero.eureka.client.b;
+package com.xhyan.zero.cloud.member;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -9,8 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-public class ServiceBApp {
+public class MemberApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ServiceBApp.class).web(true).run(args);
+        new SpringApplicationBuilder(MemberApplication.class).web(true).run(args);
     }
 }

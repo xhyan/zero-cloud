@@ -5,13 +5,18 @@ import com.xhyan.zero.cloud.account.converter.annotations.Rule;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Convert(target = AccountDTO.class)
 @Table(name = "account")
 public class Account extends BaseModel {
+    /**
+     * ID
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     /**
      * 登录名
      */

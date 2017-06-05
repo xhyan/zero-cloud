@@ -1,6 +1,7 @@
 package com.xhyan.zero.cloud.account.dto.resp;
 
 import lombok.Builder;
+import lombok.Getter;
 
 /**
  * 统一响应对象
@@ -8,6 +9,7 @@ import lombok.Builder;
  * @author yanliwei
  */
 @Builder
+@Getter
 public class ZeroResponse<T> {
     private Boolean isSuccess;
     private String errorMsg;

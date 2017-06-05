@@ -50,11 +50,11 @@ public class ConverterConfig {
         }
 
         //获取配置的包路径下@Converts注解的类
-        List<Class> convertsClasses = AnnotationUtil.scanPackages(Converts.class, StringUtils.split(","));
+        List<Class> convertsClasses = AnnotationUtil.scanPackages(Converts.class, scanPackages.split(","));
         //解析@Converts注解
         convertsClasses.forEach(clazz -> this.parsingConverts(clazz));
         //获取配置的包路径下@Convert注解的类
-        List<Class> convertClasses = AnnotationUtil.scanPackages(Convert.class, StringUtils.split(","));
+        List<Class> convertClasses = AnnotationUtil.scanPackages(Convert.class, scanPackages.split(","));
         //解析@Convert注解
         convertClasses.forEach(clazz -> this.parsingConvert(clazz));
     }
@@ -98,8 +98,9 @@ public class ConverterConfig {
                     });
             //设置映射器忽略的字段
             if (!CollectionUtils.isEmpty(aIgnores)) {
-                aToBBuilder.exclude(aIgnores.toArray(new String[aIgnores.size()])).register();
+                aToBBuilder.exclude(aIgnores.toArray(new String[aIgnores.size()]));
             }
+            aToBBuilder.register();
         }
         return aToBBuilder;
     }

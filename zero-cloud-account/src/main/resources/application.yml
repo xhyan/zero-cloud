@@ -58,5 +58,5 @@ flyway:
 debug: true
 zero:
   converter:
-    scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.controller
+    scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.model
     enable: true

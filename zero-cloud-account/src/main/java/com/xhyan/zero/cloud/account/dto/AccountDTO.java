@@ -18,10 +18,7 @@ import lombok.Setter;
  * @author xhyan
  */
 @ApiModel
-@Converts(coverts = {
-        @Convert(group = "11", target = Account.class),
-        @Convert(group = "22", target = AccountDTO2.class)
-})
+@Convert(target = Account.class)
 @Data
 public class AccountDTO extends BaseDTO {
     /**
@@ -33,20 +30,12 @@ public class AccountDTO extends BaseDTO {
     /**
      * 登录密码(不可逆加密)
      */
-    @Rules(rules = {
-            @Rule(group = "11", targetField = "tradePwd"),
-            @Rule(group = "22", targetField = "mobile")
-    })
     @ApiModelProperty(value = "登录密码", required = true)
     private String loginPwd;
 
     /**
      * 交易密码(不可逆加密)
      */
-    @Rules(rules = {
-            @Rule(group = "11", ignore = true),
-            @Rule(group = "22", targetField = "loginPwd")
-    })
     @ApiModelProperty(hidden = true)
     private String tradePwd;
 
@@ -71,7 +60,7 @@ public class AccountDTO extends BaseDTO {
     /**
      * 账户类型(1个人账户；2企业账户)
      */
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(value = "账户类型", required = true)
     private Integer type;
 
     /**

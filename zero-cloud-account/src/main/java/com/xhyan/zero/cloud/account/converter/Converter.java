@@ -2,6 +2,7 @@ package com.xhyan.zero.cloud.account.converter;
 
 import com.xhyan.zero.cloud.account.converter.mapper.ZeroConvertMapper;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 

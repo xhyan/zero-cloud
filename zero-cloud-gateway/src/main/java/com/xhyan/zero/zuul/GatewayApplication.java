@@ -9,8 +9,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @EnableZuulProxy
 @SpringCloudApplication
-public class Application {
+public class GatewayApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(Application.class).run(args);
+        new SpringApplicationBuilder(GatewayApplication.class).run(args);
     }
 }
