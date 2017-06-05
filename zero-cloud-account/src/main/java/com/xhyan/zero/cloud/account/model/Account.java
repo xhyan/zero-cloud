@@ -1,10 +1,15 @@
 package com.xhyan.zero.cloud.account.model;
 
+import com.xhyan.zero.cloud.account.converter.annotations.Convert;
+import com.xhyan.zero.cloud.account.converter.annotations.Rule;
+import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 @Data
+@Convert(target = AccountDTO.class)
 @Table(name = "account")
 public class Account extends BaseModel {
     /**
@@ -16,12 +21,14 @@ public class Account extends BaseModel {
     /**
      * 登录密码(不可逆加密)
      */
+    @Rule(ignore = true)
     @Column(name = "login_pwd")
     private String loginPwd;
 
     /**
      * 交易密码(不可逆加密)
      */
+    @Rule(ignore = true)
     @Column(name = "trade_pwd")
     private String tradePwd;
 

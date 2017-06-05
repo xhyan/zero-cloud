@@ -18,7 +18,6 @@ import lombok.Setter;
  * @author xhyan
  */
 @ApiModel
-@Builder
 @Converts(coverts = {
         @Convert(group = "11", target = Account.class),
         @Convert(group = "22", target = AccountDTO2.class)
