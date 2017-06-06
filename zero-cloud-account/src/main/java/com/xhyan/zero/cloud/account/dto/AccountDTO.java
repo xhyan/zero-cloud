@@ -61,11 +61,13 @@ public class AccountDTO extends BaseDTO {
      * 账户类型(1个人账户；2企业账户)
      */
     @ApiModelProperty(value = "账户类型", required = true)
+    @Rule(ignore = true)
     private Integer type;
 
     /**
      * 账户状态：1正常,2受限,3冻结,4注销
      */
     @ApiModelProperty(hidden = true)
+    @Rule(ignore = true)
     private Integer status;
 }

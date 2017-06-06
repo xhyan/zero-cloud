@@ -25,6 +25,11 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
     filters: stat,wall,slf4j
+  devtools:
+    livereload:
+      enabled: false  #热加载
+    restart:
+      enabled: false #是否开启自动重启
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model

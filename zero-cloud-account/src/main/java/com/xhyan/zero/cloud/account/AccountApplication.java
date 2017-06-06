@@ -6,9 +6,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * AccountService
+ * AccountApplication  账户应用
+ *
+ * @author yanliwei
  */
-//@EnableDiscoveryClient
 @EnableSwagger2
 @SpringBootApplication
 @MapperScan(basePackages = "com.xhyan.zero.cloud.account.mapper")

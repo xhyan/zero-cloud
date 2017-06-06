@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * BaseService 定义通用的方法
  */
-@Service
 public abstract class BaseService<T> {
 
     @Autowired

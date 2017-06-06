@@ -16,8 +16,8 @@ public class ZeroResponse<T> {
     private String errorCode;
     private T data;
 
-    public static <T> ZeroResponse success(T data) {
-        return ZeroResponse.builder()
+    public static <T> ZeroResponse<T> success(T data) {
+        return (ZeroResponse<T>) ZeroResponse.builder()
                 .isSuccess(Boolean.TRUE)
                 .data(data)
                 .build();

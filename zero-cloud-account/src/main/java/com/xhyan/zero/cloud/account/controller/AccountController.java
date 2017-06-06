@@ -10,6 +10,7 @@ import com.xhyan.zero.cloud.account.service.AccountService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 账户的REST服务
@@ -39,9 +40,9 @@ public class AccountController {
         return ZeroResponse.success(Converter.convert(account, AccountDTO.class));
     }
 
-    @ApiOperation(notes = "test", httpMethod = "GET", value = "测试接口")
-    @GetMapping(value = "/test", produces = {"application/json;charset=UTF-8"})
-    public String test() {
+    @ApiOperation(notes = "test", httpMethod = "POST", value = "测试接口", consumes = "multipart/form-data")
+    @PostMapping(value = "/test", consumes = {"multipart/form-data"}, produces = {"multipart/form-data"})
+    public String test(@RequestParam("file") MultipartFile file) {
         AccountDTO dto = new AccountDTO();
         dto.setEmail("222222");
         dto.setLoginName("xhyan");
@@ -49,9 +50,7 @@ public class AccountController {
         dto.setTradePwd("4321");
         dto.setStatus(1);
         Account account = Converter.convert(dto, Account.class);
-        AccountDTO2 dto2 = Converter.convert(dto, AccountDTO2.class);
         System.out.println(new Gson().toJson(account));
-        System.out.println(new Gson().toJson(dto2));
         return new Gson().toJson(account);
     }
 }

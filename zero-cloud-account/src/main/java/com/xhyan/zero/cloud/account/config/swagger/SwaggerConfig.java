@@ -18,7 +18,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SPRING_WEB)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.xhyan.zero.cloud.account.controller"))

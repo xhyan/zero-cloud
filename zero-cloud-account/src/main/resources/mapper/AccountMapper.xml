@@ -5,6 +5,7 @@
     <!--
       WARNING - @mbg.generated
     -->
+    <result column="id" jdbcType="BIGINT" property="id" />
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
     <result column="trade_pwd" jdbcType="VARCHAR" property="tradePwd" />
