@@ -1,14 +1,40 @@
-server:
-  port: 8001
-
 spring:
   application:
     name: admin-dashboard
-
+  boot:
+    admin:
+      discovery:
+        services:
+          - zero-cloud-member
+      url: http://localhost:8002
+      username: "${security.user.name}"
+      password: "${security.user.password}"
+      client:
+        metadata:
+          user.name: "${security.user.name}"
+          user.password: "${security.user.password}"
+        prefer-ip: true
+management:
+  security:
+    enabled: false
+  context-path: "/actuator"
+logging:
+  pattern:
+    file: "target/zero-admin-dashboard.log"
+security:
+  user:
+    name: xhyan
+    password: 1234
+server:
+  port: 8002
+#指定服务中心位置
 eureka:
   instance:
     hostname: localhost
+    lease-expiration-duration-in-seconds: 10
+    prefer-ip-address: true
   client:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl.defaultZone: http://localhost:9001/eureka/
+    registry-fetch-interval-seconds: 5
