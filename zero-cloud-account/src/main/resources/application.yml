@@ -4,7 +4,7 @@ server:
 #指定微服务名称
 spring:
   application:
-    name: account-service
+    name: zero-cloud-account
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -26,10 +26,12 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     filters: stat,wall,slf4j
   devtools:
+    #热加载
     livereload:
-      enabled: false  #热加载
+      enabled: false
+    #是否开启自动重启
     restart:
-      enabled: false #是否开启自动重启
+      enabled: false
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model

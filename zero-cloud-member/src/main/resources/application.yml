@@ -12,6 +12,7 @@ spring:
       turbine:
         clusters: default
         location: turbine
+        enabled: false
 #指定服务中心位置
 eureka:
   instance:
@@ -25,3 +26,5 @@ eureka:
 management:
   security:
     enabled: false
+logging:
+  file: "target/zero-cloud-sample.log"
