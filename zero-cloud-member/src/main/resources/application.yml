@@ -27,4 +27,6 @@ management:
   security:
     enabled: false
 logging:
-  file: "target/zero-cloud-sample.log"
+  file: "zero-cloud-member/target/zero-cloud-member.log"
+jolokia:
+  config:

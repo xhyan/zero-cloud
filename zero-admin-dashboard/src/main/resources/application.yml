@@ -37,4 +37,4 @@ eureka:
     serviceUrl.defaultZone: http://localhost:9001/eureka/
     registry-fetch-interval-seconds: 5
 logging:
-  file: "target/zero-admin-dashboard.log"
+  file: "zero-admin-dashboard/target/zero-admin-dashboard.log"
