@@ -2,3 +2,5 @@
 /.idea/
 *.iml
 */target/classes/
+
+zero-cloud-account/target/
