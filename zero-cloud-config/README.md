@@ -4,3 +4,9 @@ URL与配置文件的映射关系:
 -> /{label}/{application}-{profile}.yml
 -> /{application}-{profile}.properties
 -> /{label}/{application}-{profile}.properties
+
+
+
+
+
+

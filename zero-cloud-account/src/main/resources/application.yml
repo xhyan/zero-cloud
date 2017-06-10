@@ -8,9 +8,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
-    username: xhyan
-    password: 1234
+    url: ${mysql.url}
+    username: ${mysql.user}
+    password: ${mysql.password}
     initialSize: 10
     minIdle: 5
     maeBetweenEvictionRunsMillis: 60000
@@ -58,12 +58,17 @@ eureka:
     serviceUrl.defaultZone: http://localhost:9001/eureka/
 #flyway 数据库版本管理工具
 flyway:
-  url: jdbc:mysql://127.0.0.1:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
-  user: xhyan
-  password: 1234
+  url: ${mysql.url}
+  user: ${mysql.user}
+  password: ${mysql.password}
   enabled: true
-debug: true
 zero:
   converter:
     scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.model
     enable: true
+debug: false
+
+mysql:
+  url: jdbc:mysql://localhost:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
+  user: xhyan
+  password: 1234

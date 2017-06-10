@@ -9,6 +9,6 @@ eureka:
   instance:
     hostname: 127.0.0.1
   client:
-    fetch-registry: true
-    register-with-eureka: false
+    fetch-registry: false               #单机模式下，，，，禁用自身注册
+    register-with-eureka: false         #单机模式下，，，，禁用自身注册
     serviceUrl.defaultZone: http://127.0.0.1:${server.port}/eureka/
