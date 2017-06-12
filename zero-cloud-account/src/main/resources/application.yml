@@ -32,6 +32,10 @@ spring:
     #是否开启自动重启
     restart:
       enabled: false
+  zipkin:
+    service:
+      name: zero-cloud-account
+    base-url: http://localhost:9411
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model
@@ -66,8 +70,7 @@ zero:
   converter:
     scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.model
     enable: true
-debug: false
-
+debug: true
 mysql:
   url: jdbc:mysql://localhost:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: xhyan

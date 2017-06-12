@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
  * spring cloud eureka server 启动程序
  */
 @EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication
 public class MemberApplication {
     public static void main(String[] args) {

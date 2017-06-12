@@ -1,0 +1,19 @@
+server:
+  port: 9411
+spring:
+  sleuth:
+    enable: false
+  application:
+    name: zero-cloud-zipkin
+  datasource:
+    schema:
+      - classpath:db/zipkin.sql
+    url: jdbc:mysql://localhost:3306/zipkin?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
+    username: xhyan
+    password: 1234
+    driver-class-name: com.mysql.jdbc.Driver
+    initialize: true
+    continue-on-error: true
+#zipkin数据保存到数据库中需要进行如下配
+zipkin:
+  storage: mysql

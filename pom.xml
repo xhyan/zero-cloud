@@ -24,6 +24,7 @@
         <module>zero-hystrix-dashboard</module>
         <module>zero-admin-dashboard</module>
         <module>zero-cloud-common</module>
+        <module>zero-cloud-zipkin</module>
     </modules>
 
     <dependencyManagement>
