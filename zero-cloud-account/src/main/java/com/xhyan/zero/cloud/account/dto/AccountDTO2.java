@@ -4,13 +4,13 @@ import com.xhyan.zero.cloud.account.dto.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Account DTO
  *
  * @author xhyan
  */
-@ApiModel
 @Data
 public class AccountDTO2 extends BaseDTO {
     /**

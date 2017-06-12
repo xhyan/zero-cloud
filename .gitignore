@@ -4,3 +4,7 @@
 */target/classes/
 
 zero-cloud-account/target/
+
+zero-cloud-member/target/
+
+zero-admin-dashboard/target/
