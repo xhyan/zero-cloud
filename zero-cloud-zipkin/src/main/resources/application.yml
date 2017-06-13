@@ -16,4 +16,5 @@ spring:
     continue-on-error: true
 #zipkin数据保存到数据库中需要进行如下配
 zipkin:
-  storage: mysql
+  storage:
+    type: mysql

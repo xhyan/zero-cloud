@@ -15,8 +15,19 @@
         <!--zipkin server-->
         <dependency>
             <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin</artifactId>
+            <version>1.26.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-server</artifactId>
             <version>1.26.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.zipkin.java</groupId>
+                    <artifactId>zipkin</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.zipkin.java</groupId>
@@ -28,6 +39,12 @@
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-autoconfigure-storage-mysql</artifactId>
             <version>1.26.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.zipkin.java</groupId>
+                    <artifactId>zipkin</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--db-->
         <dependency>
