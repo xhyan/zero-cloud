@@ -6,7 +6,7 @@ spring:
   application:
     name: zero-cloud-zipkin
   datasource:
-    schema:
+    schema: #zipkin初始化sql
       - classpath:db/zipkin.sql
     url: jdbc:mysql://localhost:3306/zipkin?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
     username: xhyan
