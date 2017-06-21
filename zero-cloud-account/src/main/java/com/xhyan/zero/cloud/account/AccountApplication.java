@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -15,6 +17,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableFeignClients
 @EnableDiscoveryClient
+@EnableHystrix
+@EnableHystrixDashboard
 @SpringBootApplication
 @MapperScan(basePackages = "com.xhyan.zero.cloud.account.mapper")
 public class AccountApplication {

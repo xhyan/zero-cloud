@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: hystrix-dashboard
+    name: zero-hystrix-turbine
 
 eureka:
   instance:
@@ -14,4 +14,8 @@ eureka:
     serviceUrl.defaultZone: http://localhost:9001/eureka/
 
 turbine:
-  appConfig: compute-service
+  app-config: zero-cloud-account,zero-cloud-member
+  cluster-name-expression: "'default'"
+  combine-host-port: false
+  aggregator:
+    clusterConfig: default

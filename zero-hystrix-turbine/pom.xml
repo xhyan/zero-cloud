@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xhyan.zero</groupId>
-    <artifactId>zero-hystrix-dashboard</artifactId>
+    <artifactId>zero-hystrix-turbine</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>zero-hystrix-dashboard</name>
+    <name>zero-hystrix-turbine</name>
 
     <parent>
         <groupId>com.xhyan.zero</groupId>
@@ -30,11 +30,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+            <artifactId>spring-cloud-starter-turbine</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-turbine</artifactId>
+            <artifactId>spring-cloud-netflix-turbine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

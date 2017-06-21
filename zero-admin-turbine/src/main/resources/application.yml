@@ -4,7 +4,7 @@ server:
 spring:
   application:
 #   应用名称
-    name: admin-dashboard
+    name: zero-admin-turbine
   boot:
     admin:
 #     boot admin 管理地址
@@ -16,7 +16,7 @@ spring:
           user.name: "${security.user.name}"
           user.password: "${security.user.password}"
       discovery:
-        ignored-services: admin-dashboard
+        ignored-services: zero-admin-turbine
 #        prefer-ip: true
 management:
   security:
@@ -37,4 +37,4 @@ eureka:
     serviceUrl.defaultZone: http://localhost:9001/eureka/
     registry-fetch-interval-seconds: 5
 logging:
-  file: "zero-admin-dashboard/target/zero-admin-dashboard.log"
+  file: "zero-admin-turbine/target/zero-admin-turbine.log"

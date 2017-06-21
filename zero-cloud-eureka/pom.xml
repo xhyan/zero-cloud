@@ -15,7 +15,10 @@
 
     <dependencies>
         <!--spring boot 启动器-->
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!--spring cloud 启动器-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

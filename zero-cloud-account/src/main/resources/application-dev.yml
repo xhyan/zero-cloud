@@ -1,6 +1,9 @@
 #指定服务端口
 server:
   port: 2001
+feign:
+  hystrix:
+    enabled: true
 #指定微服务名称
 spring:
   application:

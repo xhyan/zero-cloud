@@ -1,8 +1,9 @@
-package com.xhyan.zero.hystrix.dashboard;
+package com.xhyan.zero.hystrix.turbine;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
@@ -13,9 +14,8 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 @EnableHystrixDashboard
 @EnableTurbine
 @EnableEurekaClient
-public class HystrixDashboardApp {
+public class HystrixTurbineApplication {
     public static void main(String[] args) {
-
-        new SpringApplicationBuilder(HystrixDashboardApp.class).run(args);
+        new SpringApplicationBuilder(HystrixTurbineApplication.class).run(args);
     }
 }
