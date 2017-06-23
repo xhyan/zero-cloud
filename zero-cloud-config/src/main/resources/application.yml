@@ -9,9 +9,7 @@ spring:
       server:
         git:
           uri: http://git.oschina.net/xhyan/spring-cloud-learn/
-          search-paths: config-server/config-repo
-          username: 343440797@qq.com
-          password: xhyan343440797
+          search-paths: config-server/zero-cloud-account
 
 eureka:
   instance:

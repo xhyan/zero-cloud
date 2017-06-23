@@ -18,7 +18,8 @@
     <lombok.version>1.16.16</lombok.version>
     <flyway.version>4.2.0</flyway.version>
     <druid.version>1.0.31</druid.version>
-    <logback.version>4.6</logback.version>
+    <logback.version>1.2.3</logback.version>
+    <logstash.logback.version>4.10</logstash.logback.version>
     <swagger.version>2.6.1</swagger.version>
     <easy.mapper.version>1.0.2</easy.mapper.version>
     <commons.lang3.version>3.5</commons.lang3.version>
@@ -117,7 +118,7 @@
       <dependency>
         <groupId>net.logstash.logback</groupId>
         <artifactId>logstash-logback-encoder</artifactId>
-        <version>${logback.version}</version>
+        <version>${logstash.logback.version}</version>
         <exclusions>
           <exclusion>
             <groupId>ch.qos.logback</groupId>
@@ -125,6 +126,7 @@
           </exclusion>
         </exclusions>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 
