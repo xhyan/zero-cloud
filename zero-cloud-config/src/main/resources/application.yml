@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: config-server
+    name: zero-cloud-config
   cloud:
     config:
       server:

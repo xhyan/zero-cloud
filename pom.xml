@@ -1,63 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.xhyan.zero</groupId>
-    <artifactId>zero-cloud</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>zero-cloud</name>
-    <parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xhyan.zero</groupId>
+  <artifactId>zero-cloud</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>zero-cloud</name>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.2.RELEASE</version>
+  </parent>
+
+  <properties>
+    <lombok.version>1.16.16</lombok.version>
+    <flyway.version>4.2.0</flyway.version>
+    <druid.version>1.0.31</druid.version>
+    <logback.version>4.6</logback.version>
+    <swagger.version>2.6.1</swagger.version>
+    <easy.mapper.version>1.0.2</easy.mapper.version>
+    <commons.lang3.version>3.5</commons.lang3.version>
+    <annotation.detector.version>3.0.5</annotation.detector.version>
+    <cloud.starter.eureka.version>1.3.1</cloud.starter.eureka.version>
+    <cloud.starter.hystrix.version>1.3.1</cloud.starter.hystrix.version>
+    <mybaits.starter.version>1.3.0</mybaits.starter.version>
+    <mapper.starter.version>1.1.1</mapper.starter.version>
+    <pagehelper.starter.version>1.1.1</pagehelper.starter.version>
+  </properties>
+
+  <modules>
+    <module>zero-cloud-account</module>
+    <module>zero-cloud-member</module>
+    <module>zero-cloud-common</module>
+    <module>zero-cloud-ribbon</module>
+    <module>zero-cloud-feign</module>
+    <module>zero-cloud-config</module>
+    <module>zero-cloud-gateway</module>
+    <module>zero-cloud-eureka</module>
+    <module>zero-cloud-zipkin</module>
+    <module>zero-hystrix-turbine</module>
+    <module>zero-admin-turbine</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Dalston.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <scope>provided</scope>
+        <version>${lombok.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybaits.starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>tk.mybatis</groupId>
+        <artifactId>mapper-spring-boot-starter</artifactId>
+        <version>${mapper.starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>${pagehelper.starter.version}</version>
+      </dependency>
+
+      <!--swagger相关依赖-->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <!--实体映射工具-->
+      <dependency>
+        <groupId>com.baidu.unbiz</groupId>
+        <artifactId>easy-mapper</artifactId>
+        <version>${easy.mapper.version}</version>
+      </dependency>
+      <!--注解解析工具-->
+      <dependency>
+        <groupId>eu.infomas</groupId>
+        <artifactId>annotation-detector</artifactId>
+        <version>${annotation.detector.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>${logback.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-    </parent>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <!--<fork>true</fork>-->
+        </configuration>
+      </plugin>
 
-    <modules>
-        <module>zero-cloud-account</module>
-        <module>zero-cloud-member</module>
-        <module>zero-cloud-common</module>
-        <module>zero-cloud-ribbon</module>
-        <module>zero-cloud-feign</module>
-        <module>zero-cloud-config</module>
-        <module>zero-cloud-gateway</module>
-        <module>zero-cloud-eureka</module>
-        <module>zero-cloud-zipkin</module>
-        <module>zero-hystrix-turbine</module>
-        <module>zero-admin-turbine</module>
-    </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!--<fork>true</fork>-->
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <testExcludes>true</testExcludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <source>1.8</source>
+          <target>1.8</target>
+          <testExcludes>true</testExcludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
