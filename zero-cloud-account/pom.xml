@@ -29,6 +29,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.xhyan.zero</groupId>
+      <artifactId>zero-cloud-common</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>

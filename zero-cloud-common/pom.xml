@@ -6,6 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>zero-cloud</groupId>
   <artifactId>zero-cloud-common</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -29,4 +30,12 @@
       <version>${mybatis.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

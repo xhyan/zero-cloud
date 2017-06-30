@@ -15,6 +15,10 @@
   </parent>
 
   <properties>
+    <source.version>1.8</source.version>
+    <target.version>1.8</target.version>
+    <compiler.encoding>UTF-8</compiler.encoding>
+    <zero.cloud.version>0.0.1-SNAPSHOT</zero.cloud.version>
     <lombok.version>1.16.16</lombok.version>
     <flyway.version>4.2.0</flyway.version>
     <druid.version>1.0.31</druid.version>
@@ -134,24 +138,26 @@
   </dependencyManagement>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <!--<fork>true</fork>-->
-        </configuration>
-      </plugin>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <configuration>
+            <!--<fork>true</fork>-->
+          </configuration>
+        </plugin>
 
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <encoding>UTF-8</encoding>
-          <source>1.8</source>
-          <target>1.8</target>
-          <testExcludes>true</testExcludes>
-        </configuration>
-      </plugin>
-    </plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <encoding>${compiler.encoding}</encoding>
+            <source>${source.version}</source>
+            <target>${target.version}</target>
+            <testExcludes>true</testExcludes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>

@@ -47,6 +47,7 @@ mybatis:
 mapper:
   mappers:
     - tk.mybatis.mapper.common.Mapper
+    - com.xhyan.zero.cloud.common.mapper.CustomMySqlMapper
   not-empty: false
   identity: MYSQL
 #pagehelper配置
