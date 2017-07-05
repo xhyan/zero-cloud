@@ -3,7 +3,7 @@ spring:
     name: zero-cloud-account
   cloud:
     config:
-      name: account
+      name: ${spring.application.name}
       discovery:
         enabled: true
         service-id: zero-cloud-config

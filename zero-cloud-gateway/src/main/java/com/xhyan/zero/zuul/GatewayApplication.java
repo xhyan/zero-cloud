@@ -5,7 +5,7 @@ import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
- * Created by xhyan on 16-11-14.
+ * zero cloud 统一网关
  */
 @EnableZuulProxy
 @SpringCloudApplication

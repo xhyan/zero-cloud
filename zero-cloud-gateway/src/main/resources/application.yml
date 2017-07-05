@@ -3,13 +3,16 @@ server:
 
 spring:
   application:
-    name: gateway-zuul
+    name: zero-cloud-gateway
 
 zuul:
   routes:
-    api-a:
-      path: /api-a/**
-      serviceId: compute-service
+    account:
+      path: api/account/**
+      serviceId: zero-cloud-account
+    member:
+      path: api/member/**
+      serviceId: zero-cloud-member
 
 eureka:
   instance:

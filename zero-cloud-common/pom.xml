@@ -15,9 +15,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-
   <dependencies>
-
     <dependency>
       <groupId>tk.mybatis</groupId>
       <artifactId>mapper</artifactId>

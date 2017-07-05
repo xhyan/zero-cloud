@@ -1,0 +1,4 @@
+zero:
+  converter:
+    scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.model
+    enable: true

@@ -80,7 +80,6 @@
         <version>${mybaits.starter.version}</version>
       </dependency>
 
-
       <dependency>
         <groupId>tk.mybatis</groupId>
         <artifactId>mapper-spring-boot-starter</artifactId>
@@ -92,7 +91,6 @@
         <artifactId>pagehelper-spring-boot-starter</artifactId>
         <version>${pagehelper.starter.version}</version>
       </dependency>
-
       <!--swagger相关依赖-->
       <dependency>
         <groupId>io.springfox</groupId>

@@ -9,7 +9,7 @@ spring:
       server:
         git:
           uri: http://git.oschina.net/xhyan/spring-cloud-learn/
-          search-paths: config-server/zero-cloud-account
+          search-paths: config-server/
 
 eureka:
   instance:
