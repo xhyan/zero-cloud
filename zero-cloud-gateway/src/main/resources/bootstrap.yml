@@ -1,3 +1,3 @@
 spring:
   profiles:
-    active: 300
+    active: dev

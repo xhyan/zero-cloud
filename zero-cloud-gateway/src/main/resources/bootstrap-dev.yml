@@ -1,19 +1,14 @@
-server:
-  port: 5555
-
 spring:
   application:
     name: zero-cloud-gateway
-
-zuul:
-  routes:
-    account:
-      path: api/account/**
-      serviceId: zero-cloud-account
-    member:
-      path: api/member/**
-      serviceId: zero-cloud-member
-
+  cloud:
+    config:
+      name: ${spring.application.name}
+      discovery:
+        enabled: true
+        service-id: zero-cloud-config
+      label: master
+      profile: ${spring.profiles.active}
 eureka:
   instance:
     hostname: localhost

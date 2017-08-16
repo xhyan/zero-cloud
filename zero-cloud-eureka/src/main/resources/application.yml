@@ -1,14 +1,45 @@
+
 server:
   port: 9001
 
 spring:
   application:
     name: eureka-server
+  profiles:
+    active: node1
 
 eureka:
   instance:
-    hostname: 127.0.0.1
+    hostname: localhost
   client:
     fetch-registry: false               #表示是否从Eureka Server获取注册信息，默认为true。
     register-with-eureka: false         #表示是否将自己注册到Eureka Server，默认为true
-    serviceUrl.defaultZone: http://127.0.0.1:${server.port}/eureka/
+    serviceUrl.defaultZone: http://localhost:9001/eureka/
+
+---
+spring:
+  profiles: node2
+
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: eureka.instance.node2
+  client:
+    fetch-registry: true               #表示是否从Eureka Server获取注册信息，默认为true。
+    register-with-eureka: true         #表示是否将自己注册到Eureka Server，默认为true
+    serviceUrl.defaultZone: http://eureka.instance.node3:9003/eureka/,http://eureka.instance.node1:9001/eureka/
+
+---
+spring:
+  profiles: node3
+
+server:
+  port: 9003
+eureka:
+  instance:
+    hostname: eureka.instance.node3
+  client:
+    fetch-registry: true               #表示是否从Eureka Server获取注册信息，默认为true。
+    register-with-eureka: true         #表示是否将自己注册到Eureka Server，默认为true
+    serviceUrl.defaultZone: http://eureka.instance.node1:9001/eureka/,http://eureka.instance.node2:9002/eureka/

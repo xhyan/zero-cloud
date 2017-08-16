@@ -1,0 +1,11 @@
+server:
+  port: 5555
+
+zuul:
+  routes:
+    account:
+      path: api/account/**
+      serviceId: zero-cloud-account
+    member:
+      path: api/member/**
+      serviceId: zero-cloud-member

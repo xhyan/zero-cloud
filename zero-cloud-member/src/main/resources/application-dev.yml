@@ -1,6 +1,6 @@
 #指定服务端口
 server:
-  port: 2002
+  port: 2003
 feign:
   hystrix:
     enabled: true

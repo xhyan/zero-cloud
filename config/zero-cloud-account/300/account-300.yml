@@ -1,4 +1,21 @@
+#指定服务端口
+server:
+  port: 2001
+#指定微服务名称
 spring:
+  application:
+    name: zero-cloud-account
+  devtools:
+    #热加载
+    livereload:
+      enabled: false
+    #是否开启自动重启
+    restart:
+      enabled: false
+  zipkin:
+    service:
+      name: zero-cloud-account
+    base-url: http://localhost:9411
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -19,6 +36,18 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
     filters: stat,wall,slf4j
+feign:
+  hystrix:
+    enabled: true
+#指定服务中心位置
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl.defaultZone: http://localhost:9001/eureka/
+debug: true
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model
@@ -45,3 +74,7 @@ mysql:
   url: jdbc:mysql://localhost:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: xhyan
   password: 1234
+zero:
+  converter:
+    scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.model
+    enable: true
