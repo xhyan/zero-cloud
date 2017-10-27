@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Convert(target = AccountDTO.class)
 @Table(name = "account")
 public class Account extends BaseModel {
+
     /**
      * ID
      */
