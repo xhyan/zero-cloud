@@ -11,7 +11,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.0.M3</version>
+    <version>2.0.1.RELEASE</version>
   </parent>
 
   <repositories>
@@ -37,7 +37,6 @@
     <logback.version>1.2.3</logback.version>
     <logstash.logback.version>4.10</logstash.logback.version>
     <swagger.version>2.6.1</swagger.version>
-    <easy.mapper.version>1.0.2</easy.mapper.version>
     <commons.lang3.version>3.5</commons.lang3.version>
     <annotation.detector.version>3.0.5</annotation.detector.version>
     <cloud.starter.eureka.version>1.3.1</cloud.starter.eureka.version>
@@ -53,8 +52,6 @@
     <module>zero-cloud-account</module>
     <module>zero-cloud-member</module>
     <module>zero-cloud-common</module>
-    <module>zero-cloud-ribbon</module>
-    <module>zero-cloud-feign</module>
     <module>zero-cloud-config</module>
     <module>zero-cloud-gateway</module>
     <module>zero-cloud-eureka</module>
@@ -68,7 +65,14 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Finchley.M1</version>
+        <version>Finchley.RC2</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-netflix</artifactId>
+        <version>2.0.0.RC2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -114,12 +118,6 @@
         <artifactId>springfox-swagger-ui</artifactId>
         <version>${swagger.version}</version>
       </dependency>
-      <!--实体映射工具-->
-      <dependency>
-        <groupId>com.baidu.unbiz</groupId>
-        <artifactId>easy-mapper</artifactId>
-        <version>${easy.mapper.version}</version>
-      </dependency>
       <!--注解解析工具-->
       <dependency>
         <groupId>eu.infomas</groupId>
@@ -148,53 +146,11 @@
   </dependencyManagement>
 
   <dependencies>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jre8</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-reflect</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-test</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
+
   </dependencies>
 
   <build>
     <plugins>
-      <plugin>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <version>${kotlin.version}</version>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <goals> <goal>compile</goal> </goals>
-            <configuration>
-              <sourceDirs>
-                <!--<sourceDir>${project.basedir}/src/main/kotlin</sourceDir>-->
-                <sourceDir>${project.basedir}/src/main/java</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>test-compile</id>
-            <goals> <goal>test-compile</goal> </goals>
-            <configuration>
-              <sourceDirs>
-                <!--<sourceDir>${project.basedir}/src/test/kotlin</sourceDir>-->
-                <sourceDir>${project.basedir}/src/test/java</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
@@ -217,12 +173,16 @@
           <execution>
             <id>java-compile</id>
             <phase>compile</phase>
-            <goals> <goal>compile</goal> </goals>
+            <goals>
+              <goal>compile</goal>
+            </goals>
           </execution>
           <execution>
             <id>java-test-compile</id>
             <phase>test-compile</phase>
-            <goals> <goal>testCompile</goal> </goals>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

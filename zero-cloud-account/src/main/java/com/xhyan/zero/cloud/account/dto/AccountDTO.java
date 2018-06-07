@@ -1,16 +1,9 @@
 package com.xhyan.zero.cloud.account.dto;
 
-import com.xhyan.zero.cloud.account.converter.annotations.Convert;
-import com.xhyan.zero.cloud.account.converter.annotations.Converts;
-import com.xhyan.zero.cloud.account.converter.annotations.Rule;
-import com.xhyan.zero.cloud.account.converter.annotations.Rules;
 import com.xhyan.zero.cloud.account.dto.base.BaseDTO;
-import com.xhyan.zero.cloud.account.model.Account;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Setter;
 
 /**
  * Account DTO
@@ -18,7 +11,6 @@ import lombok.Setter;
  * @author xhyan
  */
 @ApiModel
-@Convert(target = Account.class)
 @Data
 public class AccountDTO extends BaseDTO {
     /**
@@ -61,13 +53,11 @@ public class AccountDTO extends BaseDTO {
      * 账户类型(1个人账户；2企业账户)
      */
     @ApiModelProperty(value = "账户类型", required = true)
-    @Rule(ignore = true)
     private Integer type;
 
     /**
      * 账户状态：1正常,2受限,3冻结,4注销
      */
     @ApiModelProperty(hidden = true)
-    @Rule(ignore = true)
     private Integer status;
 }

@@ -1,14 +1,13 @@
 package com.xhyan.zero.cloud.account.model;
 
-import com.xhyan.zero.cloud.account.converter.annotations.Convert;
-import com.xhyan.zero.cloud.account.converter.annotations.Rule;
-import com.xhyan.zero.cloud.account.dto.AccountDTO;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
-import javax.persistence.*;
-
 @Data
-@Convert(target = AccountDTO.class)
 @Table(name = "account")
 public class Account extends BaseModel {
 
@@ -27,24 +26,22 @@ public class Account extends BaseModel {
     /**
      * 登录密码(不可逆加密)
      */
-    @Rule(ignore = true)
     @Column(name = "login_pwd")
     private String loginPwd;
 
     /**
      * 交易密码(不可逆加密)
      */
-    @Rule(ignore = true)
     @Column(name = "trade_pwd")
     private String tradePwd;
 
     /**
-     *  账号绑定邮箱
+     * 账号绑定邮箱
      */
     private String email;
 
     /**
-     *  账号绑定备用邮箱
+     * 账号绑定备用邮箱
      */
     @Column(name = "email_backup")
     private String emailBackup;

@@ -1,9 +1,7 @@
 package com.xhyan.zero.cloud.account.controller;
 
 import com.google.gson.Gson;
-import com.xhyan.zero.cloud.account.converter.Converter;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
-import com.xhyan.zero.cloud.account.dto.AccountDTO2;
 import com.xhyan.zero.cloud.account.dto.resp.ZeroResponse;
 import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.service.AccountService;
@@ -37,7 +35,7 @@ public class AccountController {
             @ApiResponse(code = 405, message = "参数错误")
     })
     public boolean save(@ApiParam(required = true, value = "account data") @RequestBody AccountDTO account) {
-        Account acc = Converter.convert(account, Account.class);
+        Account acc =new Account();
         acc.setStatus(1);
         return accountService.save(acc) > 0;
     }
@@ -46,7 +44,7 @@ public class AccountController {
     @GetMapping(value = "/account/{accountId}")
     public ZeroResponse<AccountDTO> queryOne(@ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
         Account account = accountService.selectByPrimaryKey(accountId);
-        return ZeroResponse.success(Converter.convert(account, AccountDTO.class));
+        return ZeroResponse.success(new AccountDTO());
     }
 
     @ApiOperation(notes = "test", httpMethod = "POST", value = "测试接口", consumes = "multipart/form-data")
@@ -58,7 +56,7 @@ public class AccountController {
         dto.setLoginPwd("1234");
         dto.setTradePwd("4321");
         dto.setStatus(1);
-        Account account = Converter.convert(dto, Account.class);
+        Account account = new Account();
         System.out.println(new Gson().toJson(account));
         return new Gson().toJson(account);
     }

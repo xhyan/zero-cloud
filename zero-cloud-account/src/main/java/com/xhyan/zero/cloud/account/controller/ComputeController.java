@@ -16,7 +16,7 @@ public class ComputeController {
 
     @RequestMapping(value = "/add" ,method = RequestMethod.GET)
     public Integer add(@RequestParam Integer a, @RequestParam Integer b){
-        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        ServiceInstance instance = discoveryClient.getInstances("").get(0);
         Integer result = a + b;
         System.out.println("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + result);
         return result;

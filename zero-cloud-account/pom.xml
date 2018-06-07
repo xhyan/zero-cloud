@@ -3,7 +3,6 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.xhyan.zero</groupId>
   <artifactId>zero-cloud-account</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>zero-cloud-account</name>
@@ -87,7 +86,7 @@
     <!--spring cloud 启动器-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-eureka</artifactId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -96,11 +95,11 @@
     <!--使用hystrix-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-hystrix</artifactId>
+      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+      <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -120,11 +119,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
       <optional>true</optional>
-    </dependency>
-    <!--实体映射工具-->
-    <dependency>
-      <groupId>com.baidu.unbiz</groupId>
-      <artifactId>easy-mapper</artifactId>
     </dependency>
     <!--注解解析工具-->
     <dependency>
