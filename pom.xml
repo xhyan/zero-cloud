@@ -70,12 +70,6 @@
         <scope>import</scope>
       </dependency>
 
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <scope>provided</scope>
-        <version>${lombok.version}</version>
-      </dependency>
 
       <dependency>
         <groupId>com.alibaba</groupId>
@@ -139,7 +133,17 @@
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+      <version>${lombok.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

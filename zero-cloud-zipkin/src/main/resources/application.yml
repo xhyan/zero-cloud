@@ -12,7 +12,6 @@ spring:
     username: xhyan
     password: 1234
     driver-class-name: com.mysql.jdbc.Driver
-    initialize: true
     continue-on-error: true
 #zipkin数据保存到数据库中需要进行如下配
 zipkin:
