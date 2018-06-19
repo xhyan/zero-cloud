@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhyan.zero.cloud.member.mapper.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.xhyan.zero.cloud.member.model.Member">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="account_id" jdbcType="BIGINT" property="accountId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="points" jdbcType="BIGINT" property="points" />
+    <result column="available_points" jdbcType="BIGINT" property="availablePoints" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+  </resultMap>
+</mapper>

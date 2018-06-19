@@ -9,25 +9,27 @@ spring:
   application:
     name: zero-cloud-account
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: ${mysql.url}
-    username: ${mysql.user}
-    password: ${mysql.password}
-    initialSize: 10
-    minIdle: 5
-    maeBetweenEvictionRunsMillis: 60000
-    minxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 30000
-    validationQuery: SELECT 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxPoolPreparedStatementPerConnectionSize: 20
-    filters: stat,wall,slf4j
+    druid:
+      db-type: mysql
+      driver-class-name: com.mysql.jdbc.Driver
+      url: ${mysql.url}
+      username: ${mysql.user}
+      password: ${mysql.password}
+      initialSize: 10
+      minIdle: 5
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,slf4j
+      filter:
+        config:
+          enabled: true
   devtools:
     #热加载
     livereload:
@@ -39,6 +41,11 @@ spring:
     service:
       name: zero-cloud-account
     base-url: http://localhost:9411
+  flyway: #flyway 数据库版本管理工具
+    url: ${mysql.url}
+    user: ${mysql.user}
+    password: ${mysql.password}
+    enabled: true
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model
@@ -56,13 +63,6 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 #指定服务中心位置
-
-#flyway 数据库版本管理工具
-flyway:
-  url: ${mysql.url}
-  user: ${mysql.user}
-  password: ${mysql.password}
-  enabled: true
 zero:
   converter:
     scan-packages: com.xhyan.zero.cloud.account.dto,com.xhyan.zero.cloud.account.model

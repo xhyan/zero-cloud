@@ -21,7 +21,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/cloud_account"
+                        connectionURL="jdbc:mysql://localhost:3306/cloud_member"
                         userId="xhyan"
                         password="1234">
         </jdbcConnection>
@@ -34,7 +34,7 @@
         <!--生成java 数据库实体类-->
         <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}">
             <property name="trimStrings" value="true"/>
-            <property name="rootClass" value="com.xhyan.zero.cloud.account.model.BaseModel"/>
+            <property name="rootClass" value="com.xhyan.zero.cloud.member.model.BaseModel"/>
         </javaModelGenerator>
         <!--生成mapper xml文件-->
         <sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourcesProject}"/>
@@ -49,7 +49,7 @@
             <!--<ignoreColumn column="gmt_modify"/>-->
         <!--</table>-->
 
-        <table tableName="account">
+        <table tableName="member">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--忽略数据库中基础字段-->
             <ignoreColumn column="gmt_create"/>

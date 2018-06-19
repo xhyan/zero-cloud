@@ -31,7 +31,7 @@
     <compiler.encoding>UTF-8</compiler.encoding>
     <zero.cloud.version>0.0.1-SNAPSHOT</zero.cloud.version>
     <lombok.version>1.16.18</lombok.version>
-    <druid.version>1.0.31</druid.version>
+    <druid.starter.version>1.1.10</druid.starter.version>
     <swagger.version>2.6.1</swagger.version>
     <commons.lang3.version>3.5</commons.lang3.version>
     <annotation.detector.version>3.0.5</annotation.detector.version>
@@ -66,10 +66,9 @@
       </dependency>
       <dependency>
         <groupId>com.alibaba</groupId>
-        <artifactId>druid</artifactId>
-        <version>${druid.version}</version>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid.starter.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.mybatis.spring.boot</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -120,47 +119,6 @@
             <artifactId>logback-core</artifactId>
           </exclusion>
         </exclusions>
-      </dependency>
-      <!--admin系列系列-->
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-starter-client</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server-ui-login</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server-ui</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server-ui-login</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server-ui-activiti</artifactId>
-        <version>1.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>de.codecentric</groupId>
-        <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
-        <version>1.5.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

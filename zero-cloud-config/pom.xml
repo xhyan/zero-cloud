@@ -28,6 +28,16 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>hystrix-core</artifactId>
+          <groupId>com.netflix.hystrix</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
     

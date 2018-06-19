@@ -14,92 +14,123 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
+  <properties>
+    <!--  MyBatis Generator  -->
+    <!--  Java接口和实体类  -->
+    <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+    <targetMapperPackage>com.xhyan.zero.cloud.member.mapper</targetMapperPackage>
+    <targetModelPackage>com.xhyan.zero.cloud.member.model</targetModelPackage>
+    <!--  XML生成路径  -->
+    <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
+    <targetXMLPackage>mapper</targetXMLPackage>
+  </properties>
+
   <dependencies>
-    <!--<dependency>-->
-    <!--<groupId>mysql</groupId>-->
-    <!--<artifactId>mysql-connector-java</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>com.alibaba</groupId>-->
-    <!--<artifactId>druid</artifactId>-->
-    <!--<version>1.0.31</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid-spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>tk.mybatis</groupId>
+      <artifactId>mapper-spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+    </dependency>
     <!--spring boot 启动器-->
-    <!--<dependency>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-starter-test</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>org.mybatis.spring.boot</groupId>-->
-    <!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
-    <!--<version>1.3.0</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>tk.mybatis</groupId>-->
-    <!--<artifactId>mapper-spring-boot-starter</artifactId>-->
-    <!--<version>1.1.1</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>com.github.pagehelper</groupId>-->
-    <!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
-    <!--<version>1.1.1</version>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.boot</groupId>-->
+      <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+    <!--</dependency>-->
     <!--spring cloud 启动器-->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.cloud</groupId>-->
+      <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<artifactId>guava</artifactId>-->
+          <!--<groupId>com.google.guava</groupId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
     <!--使用hystrix-->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.cloud</groupId>-->
+      <!--<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<artifactId>guava</artifactId>-->
+          <!--<groupId>com.google.guava</groupId>-->
+        <!--</exclusion>-->
+        <!--<exclusion>-->
+          <!--<artifactId>HdrHistogram</artifactId>-->
+          <!--<groupId>org.hdrhistogram</groupId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.cloud</groupId>-->
+      <!--<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-zipkin</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.cloud</groupId>-->
+      <!--<artifactId>spring-cloud-starter-zipkin</artifactId>-->
+    <!--</dependency>-->
     <!--spring admin 系列-->
-    <dependency>
-      <groupId>de.codecentric</groupId>
-      <artifactId>spring-boot-admin-server</artifactId>
-      <version>2.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>de.codecentric</groupId>
-      <artifactId>spring-boot-admin-server-ui</artifactId>
-      <version>1.5.7</version>
-    </dependency>
-    <dependency>
-      <groupId>de.codecentric</groupId>
-      <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
-      <version>1.5.7</version>
-    </dependency>
-    <dependency>
-      <groupId>de.codecentric</groupId>
-      <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
-      <version>1.5.7</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>de.codecentric</groupId>-->
+      <!--<artifactId>spring-boot-admin-server</artifactId>-->
+      <!--<version>2.0.0</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>de.codecentric</groupId>-->
+      <!--<artifactId>spring-boot-admin-server-ui</artifactId>-->
+      <!--<version>2.0.0</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>de.codecentric</groupId>-->
+      <!--<artifactId>spring-boot-admin-server-ui-hystrix</artifactId>-->
+      <!--<version>1.5.7</version>-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<artifactId>spring-boot-admin-server-ui</artifactId>-->
+          <!--<groupId>de.codecentric</groupId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>de.codecentric</groupId>-->
+      <!--<artifactId>spring-boot-admin-server-ui-turbine</artifactId>-->
+      <!--<version>1.5.7</version>-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<artifactId>spring-boot-admin-server</artifactId>-->
+          <!--<groupId>de.codecentric</groupId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.jolokia</groupId>
-      <artifactId>jolokia-core</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.jolokia</groupId>-->
+      <!--<artifactId>jolokia-core</artifactId>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>net.logstash.logback</groupId>
@@ -113,4 +144,31 @@
     </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.5</version>
+        <configuration>
+          <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml
+          </configurationFile>
+          <overwrite>true</overwrite>
+          <verbose>true</verbose>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
 </project>
