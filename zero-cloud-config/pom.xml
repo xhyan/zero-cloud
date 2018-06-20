@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xhyan.zero</groupId>
   <artifactId>zero-cloud-config</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${zero.cloud.version}</version>
   <name>zero-cloud-config</name>
 
   <parent>

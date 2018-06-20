@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xhyan.zero</groupId>
   <artifactId>zero-cloud-starters</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${zero.cloud.version}</version>
   <packaging>pom</packaging>
   <name>zero-cloud</name>
   <parent>

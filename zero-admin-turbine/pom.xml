@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xhyan.zero</groupId>
     <artifactId>zero-admin-turbine</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${zero.cloud.version}</version>
     <name>zero-admin-turbine</name>
 
     <parent>
@@ -47,11 +47,6 @@
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
-            <version>1.5.7</version>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-server-ui-login</artifactId>
             <version>1.5.7</version>
         </dependency>
         <dependency>

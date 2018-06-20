@@ -5,7 +5,7 @@
 
 	<groupId>com.xhyan.zero</groupId>
 	<artifactId>zero-cloud-member-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${zero.cloud.version}</version>
 	<packaging>jar</packaging>
 
 	<name>zero-cloud-member-api</name>
