@@ -26,11 +26,10 @@
   </repositories>
 
   <properties>
-    <source.version>1.8</source.version>
-    <target.version>1.8</target.version>
-    <compiler.encoding>UTF-8</compiler.encoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
     <zero.cloud.version>0.0.1-SNAPSHOT</zero.cloud.version>
-    <lombok.version>1.16.18</lombok.version>
     <druid.starter.version>1.1.10</druid.starter.version>
     <swagger.version>2.6.1</swagger.version>
     <commons.lang3.version>3.5</commons.lang3.version>
@@ -132,24 +131,30 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
-      <version>${lombok.version}</version>
     </dependency>
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>versions-maven-plugin</artifactId>
-          <version>2.3</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 </project>

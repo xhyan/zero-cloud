@@ -52,16 +52,10 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <!--spring cloud 启动器-->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.cloud</groupId>-->
-      <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-      <!--<exclusions>-->
-        <!--<exclusion>-->
-          <!--<artifactId>guava</artifactId>-->
-          <!--<groupId>com.google.guava</groupId>-->
-        <!--</exclusion>-->
-      <!--</exclusions>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
     <!--使用hystrix-->
     <!--<dependency>-->
       <!--<groupId>org.springframework.cloud</groupId>-->
@@ -137,6 +131,12 @@
           <artifactId>logback-core</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <!--内部包依赖-->
+    <dependency>
+      <groupId>com.xhyan.zero</groupId>
+      <artifactId>zero-cloud-member-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
