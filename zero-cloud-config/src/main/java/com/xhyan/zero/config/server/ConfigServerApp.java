@@ -7,6 +7,8 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
  * 外部化配置服务端
+ *
+ * @author xhyan
  */
 @EnableDiscoveryClient
 @EnableConfigServer

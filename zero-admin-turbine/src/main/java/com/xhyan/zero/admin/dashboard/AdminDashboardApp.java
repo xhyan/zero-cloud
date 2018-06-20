@@ -1,10 +1,15 @@
 package com.xhyan.zero.admin.dashboard;
 
-import de.codecentric.boot.admin.config.EnableAdminServer;
-import de.codecentric.boot.admin.notify.LoggingNotifier;
-import de.codecentric.boot.admin.notify.Notifier;
-import de.codecentric.boot.admin.notify.RemindingNotifier;
-import de.codecentric.boot.admin.notify.filter.FilteringNotifier;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import de.codecentric.boot.admin.server.domain.entities.Instance;
+import de.codecentric.boot.admin.server.domain.entities.InstanceRepository;
+import de.codecentric.boot.admin.server.domain.values.InstanceId;
+import de.codecentric.boot.admin.server.notify.LoggingNotifier;
+import de.codecentric.boot.admin.server.notify.Notifier;
+import de.codecentric.boot.admin.server.notify.RemindingNotifier;
+import de.codecentric.boot.admin.server.notify.filter.FilteringNotifier;
+import java.time.Duration;
+import java.util.function.BiFunction;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -14,8 +19,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
-import java.util.concurrent.TimeUnit;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 
 @SpringBootApplication
@@ -29,6 +34,7 @@ public class AdminDashboardApp {
 
     @Configuration
     public static class SecurityConfig extends WebSecurityConfigurerAdapter {
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             // Page with login form is served as /login.html and does a POST on /login
@@ -40,8 +46,8 @@ public class AdminDashboardApp {
 
             // Requests for the login page and the static assets are allowed
             http.authorizeRequests()
-                    .antMatchers("/login.html", "/**/*.css", "/img/**", "/third-party/**")
-                    .permitAll();
+                .antMatchers("/login.html", "/**/*.css", "/img/**", "/third-party/**")
+                .permitAll();
             // ... and any other request needs to be authorized
             http.authorizeRequests().antMatchers("/**").authenticated();
 
@@ -53,27 +59,66 @@ public class AdminDashboardApp {
 
     @Configuration
     public static class NotifierConfig {
+
         @Bean
-        @Primary
-        public RemindingNotifier remindingNotifier() {
-            RemindingNotifier notifier = new RemindingNotifier(filteringNotifier(loggerNotifier()));
-            notifier.setReminderPeriod(TimeUnit.SECONDS.toMillis(10));
-            return notifier;
+        public InstanceRepository instanceRepository() {
+            return new InstanceRepository() {
+                @Override
+                public Mono<Instance> save(Instance instance) {
+                    return null;
+                }
+
+                @Override
+                public Flux<Instance> findAll() {
+                    return null;
+                }
+
+                @Override
+                public Mono<Instance> find(InstanceId instanceId) {
+                    return null;
+                }
+
+                @Override
+                public Flux<Instance> findByName(String s) {
+                    return null;
+                }
+
+                @Override
+                public Mono<Instance> compute(InstanceId instanceId,
+                    BiFunction<InstanceId, Instance, Mono<Instance>> biFunction) {
+                    return null;
+                }
+
+                @Override
+                public Mono<Instance> computeIfPresent(InstanceId instanceId,
+                    BiFunction<InstanceId, Instance, Mono<Instance>> biFunction) {
+                    return null;
+                }
+            };
         }
+
+//        @Bean
+//        @Primary
+//        public RemindingNotifier remindingNotifier(InstanceRepository repository) {
+//
+//            RemindingNotifier notifier = new RemindingNotifier(filteringNotifier());
+//            notifier.setReminderPeriod(Duration.ofMillis(10));
+//            return notifier;
+//        }
 
         @Scheduled(fixedRate = 1_000L)
         public void remind() {
-            remindingNotifier().sendReminders();
         }
 
         @Bean
-        public FilteringNotifier filteringNotifier(Notifier delegate) {
-            return new FilteringNotifier(delegate);
+        public Notifier filteringNotifier(RemindingNotifier notifier,
+            InstanceRepository repository) {
+            return new FilteringNotifier(notifier, repository);
         }
 
         @Bean
-        public LoggingNotifier loggerNotifier() {
-            return new LoggingNotifier();
+        public LoggingNotifier loggerNotifier(InstanceRepository repository) {
+            return new LoggingNotifier(repository);
         }
     }
 }
