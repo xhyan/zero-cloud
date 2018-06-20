@@ -3,7 +3,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.xhyan.zero</groupId>
 	<artifactId>zero-cloud-member-api</artifactId>
 	<version>${zero.cloud.version}</version>
 	<packaging>jar</packaging>
