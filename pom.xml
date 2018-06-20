@@ -44,6 +44,7 @@
 
   <modules>
     <module>zero-cloud-account</module>
+    <module>zero-cloud-member-api</module>
     <module>zero-cloud-member</module>
     <module>zero-cloud-common</module>
     <module>zero-cloud-config</module>
@@ -52,6 +53,7 @@
     <module>zero-cloud-zipkin</module>
     <module>zero-hystrix-turbine</module>
     <module>zero-admin-turbine</module>
+    <module>zero-cloud-starters</module>
   </modules>
 
   <dependencyManagement>

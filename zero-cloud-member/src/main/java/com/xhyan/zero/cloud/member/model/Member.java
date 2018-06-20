@@ -1,5 +1,8 @@
 package com.xhyan.zero.cloud.member.model;
 
+import com.xhyan.zero.copier.annotations.Copier;
+import com.xhyan.zero.copier.annotations.CopierField;
+import com.xhyan.zero.member.dto.MemberDTO;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +16,7 @@ import lombok.Data;
  * @author xhyan
  */
 @Data
+@Copier(mapClass = MemberDTO.class)
 @Table(name = "member")
 public class Member extends BaseModel {
 
@@ -58,5 +62,6 @@ public class Member extends BaseModel {
     /**
      * 扩展字段
      */
+    @CopierField(mapFiled = "", isIgnore = true)
     private String extend;
 }

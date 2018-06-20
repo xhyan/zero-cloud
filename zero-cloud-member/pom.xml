@@ -138,6 +138,11 @@
       <artifactId>zero-cloud-member-api</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>com.xhyan.zero</groupId>
+      <artifactId>copier-spring-boot-starter</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>

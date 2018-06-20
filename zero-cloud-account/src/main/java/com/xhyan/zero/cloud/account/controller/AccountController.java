@@ -1,8 +1,6 @@
 package com.xhyan.zero.cloud.account.controller;
 
-import com.google.gson.Gson;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
-import com.xhyan.zero.cloud.account.dto.resp.ZeroResponse;
 import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.service.AccountService;
 import io.swagger.annotations.Api;
@@ -15,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 账户的REST服务
@@ -42,22 +38,9 @@ public class AccountController {
 
     @ApiOperation(notes = "query one account", httpMethod = "GET", value = "查询单个账户")
     @GetMapping(value = "/account/{accountId}")
-    public ZeroResponse<AccountDTO> queryOne(@ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
+    public AccountDTO queryOne(@ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
         Account account = accountService.selectByPrimaryKey(accountId);
-        return ZeroResponse.success(new AccountDTO());
+        return new AccountDTO();
     }
 
-    @ApiOperation(notes = "test", httpMethod = "POST", value = "测试接口", consumes = "multipart/form-data")
-    @PostMapping(value = "/test", consumes = {"multipart/form-data"}, produces = {"multipart/form-data"})
-    public String test(@RequestParam("file") MultipartFile file) {
-        AccountDTO dto = new AccountDTO();
-        dto.setEmail("222222");
-        dto.setLoginName("xhyan");
-        dto.setLoginPwd("1234");
-        dto.setTradePwd("4321");
-        dto.setStatus(1);
-        Account account = new Account();
-        System.out.println(new Gson().toJson(account));
-        return new Gson().toJson(account);
-    }
 }

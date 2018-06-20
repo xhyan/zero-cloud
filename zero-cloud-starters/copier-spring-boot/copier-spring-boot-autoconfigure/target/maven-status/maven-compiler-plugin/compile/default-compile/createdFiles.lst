@@ -1,0 +1,9 @@
+com\xhyan\zero\copier\annotations\CopierField.class
+com\xhyan\zero\copier\config\CopierAutoConfig.class
+com\xhyan\zero\copier\config\CopierAutoConfig$1.class
+com\xhyan\zero\copier\annotations\EmptyMapper.class
+com\xhyan\zero\copier\config\CopierProperties.class
+com\xhyan\zero\copier\utils\AnnotationUtil.class
+com\xhyan\zero\copier\annotations\Copier.class
+com\xhyan\zero\copier\annotations\CopierConverter.class
+META-INF\spring-configuration-metadata.json

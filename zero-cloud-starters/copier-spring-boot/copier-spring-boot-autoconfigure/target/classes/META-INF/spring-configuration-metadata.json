@@ -1,0 +1,24 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.xhyan.zero.copier.config.CopierProperties",
+      "name": "copier",
+      "type": "com.xhyan.zero.copier.config.CopierProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.xhyan.zero.copier.config.CopierProperties",
+      "name": "copier.convert-packages",
+      "description": "转换器的包路径，多个以逗号分割",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.xhyan.zero.copier.config.CopierProperties",
+      "name": "copier.copier-packages",
+      "description": "复制器注解类的包路径，多个以逗号分割",
+      "type": "java.lang.String"
+    }
+  ]
+}

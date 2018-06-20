@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  The MIT License (MIT)
+
+  Copyright (c) 2017 闫立玮
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.xhyan.zero</groupId>
+  <artifactId>copier-spring-boot</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>copier-spring-boot</name>
+  <description>Spring Boot Support for copier</description>
+  <url>http://10.128.46.40/yanliwei/copier-spring-boot</url>
+
+  <parent>
+    <groupId>com.xhyan.zero</groupId>
+    <artifactId>zero-cloud-starters</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>http://10.128.46.40/yanliwei/copier-spring-boot/blob/master/LICENSE</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>yanliwei</name>
+      <email>yanliwei@gome.com.cn</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@10.128.46.40:yanliwei/copier-spring-boot.git</connection>
+    <developerConnection>scm:git:git@10.128.46.40:yanliwei/copier-spring-boot.git
+    </developerConnection>
+    <url>git@10.128.46.40:yanliwei/copier-spring-boot.git</url>
+  </scm>
+
+  <modules>
+    <module>copier-spring-boot-autoconfigure</module>
+    <module>copier-spring-boot-starter</module>
+  </modules>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <source.version>1.8</source.version>
+    <target.version>1.8</target.version>
+    <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
+    <commons.lang3.version>3.5</commons.lang3.version>
+    <orika.version>1.5.2</orika.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.xhyan.zero</groupId>
+        <artifactId>copier-spring-boot-starter</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.xhyan.zero</groupId>
+        <artifactId>copier-spring-boot-autoconfigure</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ma.glasnost.orika</groupId>
+        <artifactId>orika-core</artifactId>
+        <version>${orika.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <!--Compiler-->
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <source>${source.version}</source>
+              <target>${target.version}</target>
+            </configuration>
+          </plugin>
+          <!-- Source -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+      <distributionManagement>
+        <!--<repository>-->
+          <!--<id>gome</id>-->
+          <!--<name>gome release repository</name>-->
+          <!--<url>http://10.128.11.68:8081/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+          <!--<id>gome</id>-->
+          <!--<name>gome snapshot repository</name>-->
+          <!--<url>http://10.128.11.68:8081/nexus/content/repositories/snapshots/</url>-->
+        <!--</snapshotRepository>-->
+      </distributionManagement>
+    </profile>
+  </profiles>
+
+
+
+</project>

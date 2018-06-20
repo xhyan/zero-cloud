@@ -5,3 +5,6 @@ logging:
 #  pattern:
 #    level: "%clr(%5p) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{X-Span-Export:-}]){yellow}"
   file: "zero-cloud-member/target/zero-cloud-member.log"
+copier:
+  copier-packages: com.xhyan.zero.cloud.member.model
+  convert-packages: com.xhyan.zero.cloud.member.converts,com.xhyan.zero.cloud.common.converts
