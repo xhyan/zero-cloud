@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.xhyan.zero</groupId>
   <artifactId>zero-cloud</artifactId>
-  <version>${zero.cloud.version}</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>zero-cloud</name>
   <parent>
@@ -52,7 +52,6 @@
     <module>zero-cloud-zipkin</module>
     <module>zero-hystrix-turbine</module>
     <module>zero-admin-turbine</module>
-    <module>zero-cloud-starters</module>
   </modules>
 
   <dependencyManagement>

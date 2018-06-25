@@ -22,6 +22,11 @@ public interface MemberClient extends MemberApi {
 class MemberClientFallback implements MemberClient{
 
     @Override
+    public void create(MemberDTO memberDTO) {
+
+    }
+
+    @Override
     public MemberDTO findOne(Long id) {
         return null;
     }

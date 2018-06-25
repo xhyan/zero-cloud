@@ -1,3 +1,17 @@
 spring:
-  profiles:
-    active: 300
+  application:
+    name: zero-cloud-account
+#  cloud:
+#    config:
+#      name: account
+#      discovery:
+#        enabled: true
+#        service-id: zero-cloud-config
+#      label: master
+#      profile: native
+logging:
+  pattern:
+    level: "%clr(%5p) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{X-Span-Export:-}]){yellow}"
+  file: "zero-cloud-account/target/zero-cloud-account.log"
+
+

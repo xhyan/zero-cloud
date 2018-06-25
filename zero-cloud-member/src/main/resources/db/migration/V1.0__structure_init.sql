@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
-  `id` bigint(20) NOT NULL COMMENT 'ID',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `account_id` bigint(20) NOT NULL COMMENT '账户id',
   `level` int(2) NOT NULL DEFAULT 0 COMMENT '会员等级',
   `points` bigint(20) NOT NULL DEFAULT 0 COMMENT '会员积分',

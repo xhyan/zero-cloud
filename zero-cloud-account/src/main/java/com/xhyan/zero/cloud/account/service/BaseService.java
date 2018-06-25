@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * BaseService 定义通用的方法
+ *
+ * @author xhyan
  */
 public abstract class BaseService<T> {
 

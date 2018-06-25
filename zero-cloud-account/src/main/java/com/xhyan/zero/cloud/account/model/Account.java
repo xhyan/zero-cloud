@@ -1,5 +1,7 @@
 package com.xhyan.zero.cloud.account.model;
 
+import com.xhyan.zero.cloud.account.dto.AccountDTO;
+import com.xhyan.zero.copier.annotations.Copier;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 
+/**
+ * 账户信息数据模型
+ *
+ * @author xhyan
+ */
 @Data
+@Copier(mapClass = AccountDTO.class)
 @Table(name = "account")
 public class Account extends BaseModel {
 

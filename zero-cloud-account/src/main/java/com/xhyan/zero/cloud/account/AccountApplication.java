@@ -14,9 +14,9 @@ import tk.mybatis.spring.annotation.MapperScan;
  *
  * @author xhyan
  */
+//@EnableHystrix
+//@EnableHystrixDashboard
 @EnableSwagger2
-@EnableHystrix
-@EnableHystrixDashboard
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients

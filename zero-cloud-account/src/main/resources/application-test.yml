@@ -28,15 +28,25 @@ spring:
       filter:
         config:
           enabled: true
-  zipkin:
-    service:
-      name: zero-cloud-account
-    base-url: http://localhost:9411
+#  zipkin:
+#    service:
+#      name: zero-cloud-account
+#    base-url: http://localhost:9411
   flyway: #flyway 数据库版本管理工具
     url: ${mysql.url}
     user: ${mysql.user}
     password: ${mysql.password}
     enabled: true
+eureka:
+  instance:
+    hostname: test
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl.defaultZone: http://10.112.65.89:9001/eureka/
+    registry-fetch-interval-seconds: 5
 #mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model

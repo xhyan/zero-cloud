@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: test
+copier:
+  copier-packages: com.xhyan.zero.cloud.account.model
+  convert-packages: com.xhyan.zero.cloud.account.converts,com.xhyan.zero.cloud.common.converts

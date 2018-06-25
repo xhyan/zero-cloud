@@ -50,6 +50,18 @@ spring:
     user: ${mysql.user}
     password: ${mysql.password}
     enabled: true
+#通用mapper配置
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
+#pagehelper配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 #指定服务中心位置
 #eureka:
 #  instance:

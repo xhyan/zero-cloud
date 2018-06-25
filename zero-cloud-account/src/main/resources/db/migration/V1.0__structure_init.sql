@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
-  `id` bigint(20) NOT NULL COMMENT 'ID',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `login_name` varchar(128) DEFAULT NULL COMMENT '登录名',
   `login_pwd` varchar(128) DEFAULT NULL COMMENT '登录密码(不可逆加密)',
   `trade_pwd` varchar(128) DEFAULT NULL COMMENT '交易密码(不可逆加密)',

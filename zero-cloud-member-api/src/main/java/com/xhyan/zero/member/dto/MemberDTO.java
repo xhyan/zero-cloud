@@ -1,5 +1,6 @@
 package com.xhyan.zero.member.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  * @author xhyan
  */
 @Data
+@Builder
 public class MemberDTO {
 
     /**
