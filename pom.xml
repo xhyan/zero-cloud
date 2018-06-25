@@ -44,7 +44,6 @@
 
   <modules>
     <module>zero-cloud-account</module>
-    <module>zero-cloud-member-api</module>
     <module>zero-cloud-member</module>
     <module>zero-cloud-common</module>
     <module>zero-cloud-config</module>
