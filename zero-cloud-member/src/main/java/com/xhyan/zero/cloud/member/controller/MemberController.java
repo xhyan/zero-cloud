@@ -33,6 +33,10 @@ public class MemberController implements MemberApi {
     }
 
     @Override
+    public void delete(Long id) {
+    }
+
+    @Override
     public MemberDTO findOneByAccountId(@PathVariable("accountId") Long accountId) {
         return null;
     }

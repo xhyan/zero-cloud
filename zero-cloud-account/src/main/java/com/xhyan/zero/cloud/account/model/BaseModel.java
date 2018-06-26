@@ -10,6 +10,8 @@ import java.util.Date;
 
 /**
  * Base模型对象
+ *
+ * @author xhyan
  */
 @Data
 public class BaseModel {

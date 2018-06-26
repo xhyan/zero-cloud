@@ -32,6 +32,11 @@ class MemberClientFallback implements MemberClient{
     }
 
     @Override
+    public void delete(Long id) {
+
+    }
+
+    @Override
     public MemberDTO findOneByAccountId(Long accountId) {
         return null;
     }

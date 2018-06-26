@@ -4,7 +4,7 @@
     ​
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <!-- Example for logging into the build folder of your project -->
-    <property name="BUILD_FOLDER" value="zero-account-member/target"/>
+    <property name="BUILD_FOLDER" value="zero-cloud-account/target"/>
     <property name="LOG_FILE" value="${BUILD_FOLDER:-build}/${springAppName}"/>​
 
     <!-- You can override this to have a custom pattern -->

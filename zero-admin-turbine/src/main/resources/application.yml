@@ -5,36 +5,38 @@ spring:
   application:
 #   应用名称
     name: zero-admin-turbine
-  boot:
-    admin:
-#     boot admin 管理地址
-      url: http://localhost:8002
-      username: "${security.user.name}"
-      password: "${security.user.password}"
-      client:
-        metadata:
-          user.name: "${security.user.name}"
-          user.password: "${security.user.password}"
-      discovery:
-        ignored-services: zero-admin-turbine
-#        prefer-ip: true
-management:
   security:
-    enabled: false
-  context-path: "/actuator"
-security:
-  user:
-    name: xhyan
-    password: 1234
+    user:
+      name: xhyan
+      password: 1234
 # eureka注册中心中心配置
 eureka:
   instance:
     hostname: localhost
+    #最小过期时间
     lease-expiration-duration-in-seconds: 10
+    #最小更新时间
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      name: ${spring.security.user.name}
+      password: ${spring.security.user.password}
   client:
     fetch-registry: true
     register-with-eureka: true
-    serviceUrl.defaultZone: http://localhost:9001/eureka/
     registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://10.112.65.89:9001}/eureka/
 logging:
   file: "zero-admin-turbine/target/zero-admin-turbine.log"
+  pattern:
+    file: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+debug: true
