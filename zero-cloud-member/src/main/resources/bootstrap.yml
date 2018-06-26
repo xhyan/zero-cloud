@@ -1,14 +1,6 @@
 spring:
   application:
     name: zero-cloud-member
-  cloud:
-    config:
-      name: account
-      discovery:
-        enabled: true
-        service-id: zero-member-config
-      label: master
-      profile: native
 logging:
   pattern:
     level: "%clr(%5p) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{X-Span-Export:-}]){yellow}"

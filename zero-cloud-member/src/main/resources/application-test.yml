@@ -6,6 +6,12 @@ server:
 #    enabled: true
 #指定微服务名称
 spring:
+  boot:
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://10.112.65.89:8002
 #  sleuth:
 #    sampler:
 #      percentage: 1
@@ -68,17 +74,25 @@ eureka:
     hostname: test
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 10
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    instance-id: localhost:${server.port}
   client:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl.defaultZone: http://10.112.65.89:9001/eureka/
     registry-fetch-interval-seconds: 5
-#management:
-#  endpoint:
-#    jolokia:
-#      enabled: true
-debug: false
 mysql:
   url: jdbc:mysql://localhost:3306/cloud_member?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: xhyan
   password: 1234
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    health:
+      show-details: ALWAYS
+debug: false

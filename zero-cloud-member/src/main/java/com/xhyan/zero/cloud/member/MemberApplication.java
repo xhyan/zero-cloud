@@ -17,7 +17,9 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @MapperScan(basePackages = "com.xhyan.zero.cloud.member.mapper")
 public class MemberApplication {
+
     public static void main(String[] args) {
         new SpringApplicationBuilder(MemberApplication.class).web(true).run(args);
     }
+
 }
