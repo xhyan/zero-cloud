@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: zero-cloud-gateway
+  boot:
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://10.112.65.89:8002
+eureka:  #指定服务中心位置
+  instance:
+    hostname: test
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl.defaultZone: http://10.112.65.89:9001/eureka/
+    registry-fetch-interval-seconds: 5
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    health:
+      show-details: ALWAYS
