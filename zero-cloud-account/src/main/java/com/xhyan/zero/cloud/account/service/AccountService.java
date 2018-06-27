@@ -35,4 +35,9 @@ public class AccountService extends BaseService<Account> {
         }
 
     }
+
+    public AccountDTO findOne(Long id) {
+        Account account = mapper.selectByPrimaryKey(id);
+        return copier.map(account, AccountDTO.class);
+    }
 }

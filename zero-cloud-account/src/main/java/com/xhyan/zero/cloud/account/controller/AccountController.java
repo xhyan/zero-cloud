@@ -1,15 +1,12 @@
 package com.xhyan.zero.cloud.account.controller;
 
-import com.xhyan.zero.cloud.account.client.MemberClient;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
-import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.service.AccountService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,8 +42,7 @@ public class AccountController {
     @GetMapping(value = "/account/{accountId}")
     public AccountDTO queryOne(
         @ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
-        Account account = accountService.selectByPrimaryKey(accountId);
-        return new AccountDTO();
+        return accountService.findOne(accountId);
     }
 
 }

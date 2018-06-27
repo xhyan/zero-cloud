@@ -5,6 +5,12 @@ server:
 spring:
   application:
     name: zero-cloud-account
+  boot:
+    admin:
+      client:
+        instance:
+          prefer-ip: true
+        url: http://10.112.65.89:8002
   datasource:
     druid:
       db-type: mysql
@@ -28,26 +34,24 @@ spring:
       filter:
         config:
           enabled: true
-#  zipkin:
-#    service:
-#      name: zero-cloud-account
-#    base-url: http://localhost:9411
   flyway: #flyway 数据库版本管理工具
     url: ${mysql.url}
     user: ${mysql.user}
     password: ${mysql.password}
     enabled: true
-eureka:
+eureka:  #指定服务中心位置
   instance:
     hostname: test
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 10
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    instance-id: localhost:${server.port}
   client:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl.defaultZone: http://10.112.65.89:9001/eureka/
     registry-fetch-interval-seconds: 5
-#mybatis配置
 mybatis:
   type-aliases-package: com.xhyan.zero.cloud.account.model
   mapper-locations: classpath:mapper/*.xml
@@ -67,4 +71,13 @@ mysql:
   url: jdbc:mysql://localhost:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: xhyan
   password: 1234
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    health:
+      show-details: ALWAYS
 debug: true
