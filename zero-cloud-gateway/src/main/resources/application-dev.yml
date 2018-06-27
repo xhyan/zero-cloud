@@ -7,9 +7,15 @@ spring:
         instance:
           prefer-ip: true
         url: http://10.112.65.89:8002
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 eureka:  #指定服务中心位置
   instance:
-    hostname: test
+    hostname: localhost
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 10
     leaseRenewalIntervalInSeconds: 10
@@ -28,3 +34,6 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
