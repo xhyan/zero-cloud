@@ -15,6 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,6 +65,16 @@ public class AccountController {
         AccountDTO account = accountService.findOne(accountId);
         List<TaskDTO> tasks = accountService.queryAccountTasks(accountId);
         return AccountTaskResp.builder().account(account).taskList(tasks).build();
+    }
+
+    /**
+     * 账户完成任务
+     */
+    @PostMapping(value = "/task/complete")
+    @ApiOperation(notes = "account complete task", httpMethod = "GET", value = "账户完成任务，增加对应能量值")
+    public Integer complete(@RequestParam("accountId") Long accountId,
+        @RequestParam("taskId") Long taskId) {
+        return accountService.completeTask(accountId, taskId);
     }
 
     @ApiOperation(notes = "account certification", httpMethod = "GET", value = "账户实名认证")

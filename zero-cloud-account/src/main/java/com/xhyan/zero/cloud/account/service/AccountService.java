@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
 
@@ -78,5 +79,24 @@ public class AccountService {
             .map(item -> copier.map(item, TaskDTO.class))
             .collect(
                 Collectors.toList());
+    }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public Integer completeTask(Long accountId, Long taskId){
+        //查询任务信息
+        Task task = taskMapper.selectByPrimaryKey(taskId);
+        //账户任务数据写入新数据
+        AccountTask accountTask = new AccountTask();
+        accountTask.setAccountId(accountId);
+        accountTask.setTaskId(taskId);
+        accountTask.setEnergy(task.getEnergy());
+        accountTaskMapper.insertSelective(accountTask);
+        //账户信息增加能量值
+        Account account = accountMapper.selectByPrimaryKey(accountId);
+        Integer energy = account.getEnergy() + task.getEnergy();
+        account.setEnergy(energy);
+        accountMapper.updateByPrimaryKeySelective(account);
+        return energy;
     }
 }
