@@ -25,7 +25,6 @@ public class MapperTest {
     account.setEmail("222222334");
     account.setLoginName("xhyan11");
     account.setLoginPwd("1234");
-    account.setTradePwd("4321");
     account.setStatus(1);
     int i = accountMapper.insertSelective(account);
     System.out.println(i);

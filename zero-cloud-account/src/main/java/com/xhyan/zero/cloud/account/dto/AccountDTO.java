@@ -1,8 +1,8 @@
 package com.xhyan.zero.cloud.account.dto;
 
-import com.xhyan.zero.cloud.account.dto.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Column;
 import lombok.Data;
 
 /**
@@ -12,7 +12,8 @@ import lombok.Data;
  */
 @ApiModel
 @Data
-public class AccountDTO extends BaseDTO {
+public class AccountDTO{
+    private Long id;
     /**
      * 登录名
      */
@@ -26,38 +27,35 @@ public class AccountDTO extends BaseDTO {
     private String loginPwd;
 
     /**
-     * 交易密码(不可逆加密)
+     *  邮箱
      */
-    @ApiModelProperty(hidden = true)
-    private String tradePwd;
-
-    /**
-     * 账号绑定邮箱
-     */
-    @ApiModelProperty(value = "邮箱邮箱", required = true)
+    @ApiModelProperty(value = "邮箱")
     private String email;
 
     /**
-     * 账号绑定备用邮箱
+     * 活力值
      */
-    @ApiModelProperty(value = "备用邮箱")
-    private String emailBackup;
+    @ApiModelProperty(value = "活力值")
+    private Integer energy;
 
     /**
-     * 账号绑定手机号
+     * 是否开启挖矿:1 是,2 否
      */
-    @ApiModelProperty(value = "手机号")
-    private String mobile;
+    private Integer mining;
 
     /**
-     * 账户类型(1个人账户；2企业账户)
+     * 账户状态：1 正常,4 注销
      */
-    @ApiModelProperty(value = "账户类型", required = true)
-    private Integer type;
-
-    /**
-     * 账户状态：1正常,2受限,3冻结,4注销
-     */
-    @ApiModelProperty(hidden = true)
     private Integer status;
+
+    /**
+     *  姓名
+     */
+    private String name;
+
+    /**
+     * 身份证号
+     */
+    @Column(name = "identity_card")
+    private String identityCard;
 }

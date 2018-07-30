@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: zero-cloud-wallet
+logging:
+  pattern:
+    level: "%clr(%5p) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-B3-ParentSpanId:-},%X{X-Span-Export:-}]){yellow}"
+  file: "zero-cloud-wallet/target/zero-cloud-wallet.log"
+

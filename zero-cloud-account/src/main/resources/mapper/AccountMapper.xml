@@ -5,15 +5,17 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wallet_id" jdbcType="BIGINT" property="walletId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
-    <result column="trade_pwd" jdbcType="VARCHAR" property="tradePwd" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="email_backup" jdbcType="VARCHAR" property="emailBackup" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="energy" jdbcType="INTEGER" property="energy" />
+    <result column="mining" jdbcType="TINYINT" property="mining" />
     <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identity_card" jdbcType="VARCHAR" property="identityCard" />
     <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
   </resultMap>
 </mapper>

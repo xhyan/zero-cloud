@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xhyan.zero.cloud.account.mapper.AccountBindMapper">
+  <resultMap id="BaseResultMap" type="com.xhyan.zero.cloud.account.model.AccountBind">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="account_id" jdbcType="BIGINT" property="accountId" />
+    <result column="application" jdbcType="VARCHAR" property="application" />
+    <result column="credentials" jdbcType="VARCHAR" property="credentials" />
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+  </resultMap>
+</mapper>

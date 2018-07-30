@@ -15,20 +15,19 @@
   </parent>
 
   <repositories>
-    <repository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>https://repo.spring.io/libs-milestone</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
+    <!--<repository>-->
+      <!--<id>spring-milestones</id>-->
+      <!--<name>Spring Milestones</name>-->
+      <!--<url>https://repo.spring.io/libs-milestone</url>-->
+      <!--<snapshots>-->
+        <!--<enabled>false</enabled>-->
+      <!--</snapshots>-->
+    <!--</repository>-->
   </repositories>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
     <zero.cloud.version>0.0.1-SNAPSHOT</zero.cloud.version>
     <druid.starter.version>1.1.10</druid.starter.version>
     <swagger.version>2.6.1</swagger.version>
@@ -45,6 +44,7 @@
   <modules>
     <module>zero-cloud-account</module>
     <module>zero-cloud-member</module>
+    <module>zero-cloud-wallet</module>
     <module>zero-cloud-common</module>
     <module>zero-cloud-config</module>
     <module>zero-cloud-gateway</module>

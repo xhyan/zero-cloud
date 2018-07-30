@@ -2,30 +2,35 @@ package com.xhyan.zero.cloud.account.model;
 
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import com.xhyan.zero.copier.annotations.Copier;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * 账户信息数据模型
- *
+ * 账户信息
  * @author xhyan
  */
 @Data
 @Copier(mapClass = AccountDTO.class)
 @Table(name = "account")
 public class Account extends BaseModel {
-
     /**
      * ID
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /**
+     * 钱包ID
+     */
+    @Column(name = "wallet_id")
+    private Long walletId;
+
+    /**
+     * 账号绑定手机号
+     */
+    private String mobile;
+
     /**
      * 登录名
      */
@@ -39,39 +44,39 @@ public class Account extends BaseModel {
     private String loginPwd;
 
     /**
-     * 交易密码(不可逆加密)
-     */
-    @Column(name = "trade_pwd")
-    private String tradePwd;
-
-    /**
-     * 账号绑定邮箱
+     *  账号绑定邮箱
      */
     private String email;
 
     /**
-     * 账号绑定备用邮箱
+     * 活力值
      */
-    @Column(name = "email_backup")
-    private String emailBackup;
+    private Integer energy;
 
     /**
-     * 账号绑定手机号
+     * 是否开启挖矿:1 是,2 否 
      */
-    private String mobile;
+    private Integer mining;
 
     /**
-     * 账户类型(1个人账户；2企业账户)
-     */
-    private Integer type;
-
-    /**
-     * 账户状态：1正常,2受限,3冻结,4注销
+     * 账户状态：1 正常,4 注销
      */
     private Integer status;
+
+    /**
+     *  姓名
+     */
+    private String name;
+
+    /**
+     * 身份证号
+     */
+    @Column(name = "identity_card")
+    private String identityCard;
 
     /**
      * 扩展字段
      */
     private String extend;
+
 }
