@@ -1,8 +1,9 @@
 package com.xhyan.zero.cloud.account.controller;
 
+import com.xhyan.zero.cloud.account.client.WalletClient;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import com.xhyan.zero.cloud.account.dto.TaskDTO;
-import com.xhyan.zero.cloud.account.dto.resp.AccountTaskResp;
+import com.xhyan.zero.cloud.account.dto.resp.AccountAllInfo;
 import com.xhyan.zero.cloud.account.enums.VerificationCodeTypeEnum;
 import com.xhyan.zero.cloud.account.service.AccountService;
 import com.xhyan.zero.cloud.account.service.SmsService;
@@ -32,6 +33,8 @@ public class AccountController {
     private AccountService accountService;
     @Autowired
     private SmsService smsService;
+    @Autowired
+    private WalletClient walletClient;
 
     @GetMapping(value = "/verification/code/{mobile}")
     @ApiOperation(notes = "sign up account", httpMethod = "GET", value = "注册账户")
@@ -61,10 +64,14 @@ public class AccountController {
 
     @GetMapping(value = "/account/{accountId}/tasks")
     @ApiOperation(notes = "query account and completed tasks", httpMethod = "GET", value = "查询账户信息及已完成任务列表")
-    public AccountTaskResp queryAccountTask(@PathVariable Long accountId) {
+    public AccountAllInfo queryAccountTask(@PathVariable Long accountId) {
         AccountDTO account = accountService.findOne(accountId);
         List<TaskDTO> tasks = accountService.queryAccountTasks(accountId);
-        return AccountTaskResp.builder().account(account).taskList(tasks).build();
+        if (account.getMining() == 1) {
+            //查询账户钱包余额
+            account.setBalance(walletClient.queryBalance(accountId));
+        }
+        return AccountAllInfo.builder().account(account).taskList(tasks).build();
     }
 
     /**

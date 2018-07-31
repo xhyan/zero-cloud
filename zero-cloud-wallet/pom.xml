@@ -27,9 +27,9 @@
   <dependencies>
     <!--以太坊客户端-->
     <dependency>
-      <groupId>org.ethereum</groupId>
-      <artifactId>ethereumj-core</artifactId>
-      <version>1.8.1-RELEASE</version>
+      <groupId>org.web3j</groupId>
+      <artifactId>web3j-spring-boot-starter</artifactId>
+      <version>1.6.0</version>
     </dependency>
     <!--<dependency>-->
       <!--<groupId>mysql</groupId>-->

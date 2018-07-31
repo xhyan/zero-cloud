@@ -15,6 +15,10 @@ import lombok.Data;
 public class AccountDTO{
     private Long id;
     /**
+     * 账户绑定钱包余额
+     */
+    private Long balance;
+    /**
      * 登录名
      */
     @ApiModelProperty(value = "登录名", required = true)
@@ -37,6 +41,7 @@ public class AccountDTO{
      */
     @ApiModelProperty(value = "活力值")
     private Integer energy;
+
 
     /**
      * 是否开启挖矿:1 是,2 否

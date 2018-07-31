@@ -11,6 +11,11 @@
   <name>zero-cloud-member-api</name>
   <description>会员服务api</description>
 
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>

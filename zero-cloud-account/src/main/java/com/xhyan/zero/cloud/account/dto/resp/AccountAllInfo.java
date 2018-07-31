@@ -11,7 +11,7 @@ import lombok.Builder;
  * @author xhyan
  */
 @Builder
-public class AccountTaskResp {
+public class AccountAllInfo {
     private AccountDTO account;
     private List<TaskDTO> taskList;
 }
