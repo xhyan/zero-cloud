@@ -10,6 +10,7 @@ import com.xhyan.zero.cloud.account.mapper.TaskMapper;
 import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.model.AccountTask;
 import com.xhyan.zero.cloud.account.model.Task;
+import com.xhyan.zero.wallet.api.WalletApi;
 import java.util.List;
 import java.util.stream.Collectors;
 import ma.glasnost.orika.impl.ConfigurableMapper;
@@ -83,7 +84,7 @@ public class AccountService {
 
 
     @Transactional(rollbackFor = Exception.class)
-    public Integer completeTask(Long accountId, Long taskId){
+    public Integer completeTask(Long accountId, Long taskId) {
         //查询任务信息
         Task task = taskMapper.selectByPrimaryKey(taskId);
         //账户任务数据写入新数据

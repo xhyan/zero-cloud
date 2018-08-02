@@ -13,6 +13,12 @@ import tk.mybatis.mapper.common.Mapper;
  */
 public interface AccountTaskMapper extends Mapper<AccountTask> {
 
+    /**
+     * 查询账户任务信息
+     *
+     * @param accountId
+     * @return
+     */
     @Select("SELECT * FROM account_task WHERE account_id = #{accountId}")
     List<AccountTask> queryByAccountId(@Param("accountId") Long accountId);
 }
