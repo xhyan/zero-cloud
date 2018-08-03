@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author xhyan
  */
+@Api(value = "/account", description = "账户相关服务")
 @RestController
-@Api(value = "/group", description = "账户相关的服务")
 public class AccountController {
 
     @Autowired
@@ -36,11 +36,11 @@ public class AccountController {
     @Autowired
     private WalletClient walletClient;
 
-    @GetMapping(value = "/verification/code/{mobile}")
-    @ApiOperation(notes = "sign up account", httpMethod = "GET", value = "注册账户")
-    public void sendAuthenticationCode(
+    @GetMapping(value = "/verification/code/{type}/{mobile}")
+    @ApiOperation(notes = "sign up account", httpMethod = "GET", value = "发送短息验证码")
+    public void sendAuthenticationCode( @ApiParam(required = true, value = "验证码类型:1 注册;2 登录") @PathVariable Integer type,
         @ApiParam(required = true, value = "手机号") @PathVariable String mobile) {
-        smsService.sendVerificationCode(mobile, VerificationCodeTypeEnum.SIGN_UP);
+        smsService.sendVerificationCode(mobile, VerificationCodeTypeEnum.getByType(type));
     }
 
     @GetMapping(value = "/account")
@@ -57,14 +57,13 @@ public class AccountController {
 
     @GetMapping(value = "/account/{accountId}")
     @ApiOperation(notes = "query one account", httpMethod = "GET", value = "查询单个账户")
-    public AccountDTO queryOne(
-        @ApiParam(required = true, value = "账户id") @PathVariable Long accountId) {
+    public AccountDTO queryOne(@PathVariable("accountId") Long accountId) {
         return accountService.findOne(accountId);
     }
 
-    @GetMapping(value = "/account/{accountId}/tasks")
+    @GetMapping(value = "/account/all/{accountId}")
     @ApiOperation(notes = "query account and completed tasks", httpMethod = "GET", value = "查询账户信息及已完成任务列表")
-    public AccountAllInfo queryAccountTask(@PathVariable Long accountId) {
+    public AccountAllInfo queryAccountTask( @ApiParam(required = true, name = "账户id")  @PathVariable Long accountId) {
         AccountDTO account = accountService.findOne(accountId);
         List<TaskDTO> tasks = accountService.queryAccountTasks(accountId);
         if (account.getMining() == 1) {
@@ -78,17 +77,17 @@ public class AccountController {
      * 账户完成任务
      */
     @PostMapping(value = "/task/complete")
-    @ApiOperation(notes = "account complete task", httpMethod = "GET", value = "账户完成任务，增加对应能量值")
-    public Integer complete(@RequestParam("accountId") Long accountId,
-        @RequestParam("taskId") Long taskId) {
+    @ApiOperation(notes = "account complete task", httpMethod = "POST", value = "账户完成任务，增加对应能量值")
+    public Integer complete( @ApiParam(required = true, name = "账户id")  @RequestParam("accountId") Long accountId,
+        @ApiParam(required = true, name = "任务id")  @RequestParam("taskId") Long taskId) {
         return accountService.completeTask(accountId, taskId);
     }
 
-    @ApiOperation(notes = "account certification", httpMethod = "GET", value = "账户实名认证")
+    @ApiOperation(notes = "account certification", httpMethod = "POST", value = "账户实名认证")
     @GetMapping(value = "/certification/{accountId}")
-    public void certification(@PathVariable Long accountId,
-        @RequestParam(name = "name") String name,
-        @RequestParam(name = "identityCard") String identityCard) {
+    public void certification( @ApiParam(required = true, name = "账户id") @PathVariable Long accountId,
+        @ApiParam(required = true, name = "姓名") @RequestParam(name = "name") String name,
+        @ApiParam(required = true, name = "身份证号")  @RequestParam(name = "identityCard") String identityCard) {
         accountService.certification(accountId, name, identityCard);
     }
 

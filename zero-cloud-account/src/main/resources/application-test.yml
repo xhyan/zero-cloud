@@ -39,6 +39,9 @@ spring:
     user: ${mysql.user}
     password: ${mysql.password}
     enabled: true
+  swagger:
+    enabled: true
+    title: Zero-Cloud使用Swagger2构建的API
 eureka:  #指定服务中心位置
   instance:
     hostname: test

@@ -24,7 +24,7 @@ public enum VerificationCodeTypeEnum {
         this.type = type;
     }
 
-    public VerificationCodeTypeEnum getByType(Integer type) {
+    public static VerificationCodeTypeEnum getByType(Integer type) {
         for (VerificationCodeTypeEnum typeEnum : values()) {
             if (typeEnum.getType().equals(type)) {
                 return typeEnum;

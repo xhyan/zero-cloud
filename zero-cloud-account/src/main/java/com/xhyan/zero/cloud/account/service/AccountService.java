@@ -50,6 +50,8 @@ public class AccountService {
         account.setStatus(1);
         account.setMobile(mobile);
         account.setLoginName(mobile);
+        account.setEnergy(0);
+        account.setMining(2);
         //保存账户信息
         accountMapper.insertSelective(account);
     }

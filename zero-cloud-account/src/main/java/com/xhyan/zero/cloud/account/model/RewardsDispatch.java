@@ -1,5 +1,7 @@
 package com.xhyan.zero.cloud.account.model;
 
+import com.xhyan.zero.cloud.account.dto.RewardsDTO;
+import com.xhyan.zero.copier.annotations.Copier;
 import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
@@ -10,6 +12,7 @@ import lombok.Data;
  * @author xhyan
  */
 @Data
+@Copier(mapClass = RewardsDTO.class)
 @Table(name = "rewards_dispatch")
 public class RewardsDispatch extends BaseModel {
     /**
