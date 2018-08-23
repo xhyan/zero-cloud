@@ -1,4 +1,4 @@
-package com.xhyan.zero.cloud.account.client;
+package com.xhyan.zero.cloud.account.components.client;
 
 import com.xhyan.zero.member.api.MemberApi;
 import com.xhyan.zero.member.dto.MemberDTO;

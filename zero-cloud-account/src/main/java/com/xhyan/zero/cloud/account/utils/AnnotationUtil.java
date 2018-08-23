@@ -21,7 +21,9 @@ import org.springframework.util.ClassUtils;
  */
 public class AnnotationUtil {
 
-    //需要扫描的资源路径
+    /**
+     * 需要扫描的资源路径
+     */
     private static final String RESOURCE_PATTERN = "/**/*.class";
     private static ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 

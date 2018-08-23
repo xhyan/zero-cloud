@@ -2,3 +2,7 @@
 /.idea/
 *.iml
 */target
+
+zero-cloud-starters/copier-spring-boot/copier-spring-boot-autoconfigure/target/
+
+zero-cloud-starters/copier-spring-boot/copier-spring-boot-starter/target/

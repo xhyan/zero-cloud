@@ -47,6 +47,7 @@ mapper:
     - tk.mybatis.mapper.common.Mapper
   not-empty: false
   identity: MYSQL
+  enableMethodAnnotation: true
 #pagehelper配置
 pagehelper:
   helper-dialect: mysql
@@ -57,4 +58,3 @@ mysql:
   url: jdbc:mysql://localhost:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: xhyan
   password: 1234
-debug: true

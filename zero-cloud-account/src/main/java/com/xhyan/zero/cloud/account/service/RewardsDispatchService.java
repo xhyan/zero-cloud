@@ -39,12 +39,15 @@ public class RewardsDispatchService {
             .valueOf(AccountConstant.REWARDS_AMOUNT_PER_HOURS / energy);
         List<Account> accountList = accountMapper.selectAll();
         accountList.forEach(item -> {
-            RewardsDispatch dispatch = new RewardsDispatch();
-            dispatch.setAccountId(item.getId());
-            dispatch.setType(1);
-            dispatch
-                .setAmount(BigDecimal.valueOf(item.getEnergy()).multiply(perEnergy).setScale(2));
-            rewardsDispatchMapper.insertSelective(dispatch);
+            if (rewardsDispatchMapper.countByAccountId(item.getId()) < AccountConstant.ACCOUNT_MAX_REWARDS_COUNT) {
+                //超过20次未领取，将不再发放奖励
+                RewardsDispatch dispatch = new RewardsDispatch();
+                dispatch.setAccountId(item.getId());
+                dispatch.setType(1);
+                dispatch.setAmount(
+                    BigDecimal.valueOf(item.getEnergy()).multiply(perEnergy).setScale(2));
+                rewardsDispatchMapper.insertSelective(dispatch);
+            }
         });
     }
 

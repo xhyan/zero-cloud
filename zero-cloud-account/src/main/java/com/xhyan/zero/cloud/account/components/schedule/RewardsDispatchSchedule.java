@@ -1,4 +1,4 @@
-package com.xhyan.zero.cloud.account.schedule;
+package com.xhyan.zero.cloud.account.components.schedule;
 
 import com.xhyan.zero.cloud.account.service.RewardsDispatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,9 @@ public class RewardsDispatchSchedule {
 
     /**
      * 每小时执行一次奖励发放
+     *
      */
-    @Scheduled(cron = "0 0 0/1 * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void dispatchRewards() {
         rewardsDispatchService.dispatch();
     }

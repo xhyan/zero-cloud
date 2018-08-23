@@ -17,13 +17,13 @@ public class OperationException extends RuntimeException {
     /**
      * 错误码
      */
-    String code;
+    Integer code;
 
     public OperationException(Throwable throwable) {
         super(throwable);
     }
 
-    public OperationException(String code, String msg) {
+    public OperationException(Integer code, String msg) {
         super(msg);
         this.code = code;
         this.msg = msg;

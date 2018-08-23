@@ -1,12 +1,14 @@
 package com.xhyan.zero.cloud.account.controller;
 
-import com.xhyan.zero.cloud.account.client.WalletClient;
+import com.xhyan.zero.cloud.account.components.client.WalletClient;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import com.xhyan.zero.cloud.account.dto.TaskDTO;
+import com.xhyan.zero.cloud.account.dto.req.AccountQueryReq;
 import com.xhyan.zero.cloud.account.dto.resp.AccountAllInfo;
 import com.xhyan.zero.cloud.account.enums.VerificationCodeTypeEnum;
 import com.xhyan.zero.cloud.account.service.AccountService;
 import com.xhyan.zero.cloud.account.service.SmsService;
+import com.xhyan.zero.cloud.common.dto.ZeroPageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,8 +46,8 @@ public class AccountController {
         smsService.sendVerificationCode(mobile, VerificationCodeTypeEnum.getByType(type));
     }
 
-    @GetMapping(value = "/account")
-    @ApiOperation(notes = "sign up account", httpMethod = "GET", value = "注册账户")
+    @PostMapping(value = "/accounts")
+    @ApiOperation(notes = "sign up account", httpMethod = "POST", value = "注册账户")
     @ApiResponses(value = {
         @ApiResponse(code = 50001, message = "短信验证码错误"),
         @ApiResponse(code = 701, message = "注册失败")
@@ -55,15 +58,21 @@ public class AccountController {
         accountService.signUp(mobile, verifyCode);
     }
 
-    @GetMapping(value = "/account/{accountId}")
+    @GetMapping(value = "/accounts/{accountId}")
     @ApiOperation(notes = "query one account", httpMethod = "GET", value = "查询单个账户")
     public AccountDTO queryOne(@PathVariable("accountId") Long accountId) {
         return accountService.findOne(accountId);
     }
 
-    @GetMapping(value = "/account/all/{accountId}")
+    @PostMapping(value = "/accounts/page")
+    @ApiOperation(notes = "page query accounts", httpMethod = "POST", value = "分页查询账户信息")
+    public ZeroPageInfo<AccountDTO> pageQuery(@RequestBody AccountQueryReq req) {
+        return accountService.pageList(req);
+    }
+
+    @GetMapping(value = "/accounts/{accountId}/all_info")
     @ApiOperation(notes = "query account and completed tasks", httpMethod = "GET", value = "查询账户信息及已完成任务列表")
-    public AccountAllInfo queryAccountTask( @ApiParam(required = true, name = "账户id")  @PathVariable Long accountId) {
+    public AccountAllInfo queryAccountTask( @ApiParam(required = true, name = "accountId", value = "账户id")  @PathVariable Long accountId) {
         AccountDTO account = accountService.findOne(accountId);
         List<TaskDTO> tasks = accountService.queryAccountTasks(accountId);
         if (account.getMining() == 1) {
@@ -75,6 +84,9 @@ public class AccountController {
 
     /**
      * 账户完成任务
+     * @param accountId
+     * @param taskId
+     * @return
      */
     @PostMapping(value = "/task/complete")
     @ApiOperation(notes = "account complete task", httpMethod = "POST", value = "账户完成任务，增加对应能量值")
@@ -83,8 +95,14 @@ public class AccountController {
         return accountService.completeTask(accountId, taskId);
     }
 
+    /**
+     * 账户实名认证
+     * @param accountId
+     * @param name
+     * @param identityCard
+     */
     @ApiOperation(notes = "account certification", httpMethod = "POST", value = "账户实名认证")
-    @GetMapping(value = "/certification/{accountId}")
+    @GetMapping(value = "/accounts/{accountId}/certification")
     public void certification( @ApiParam(required = true, name = "账户id") @PathVariable Long accountId,
         @ApiParam(required = true, name = "姓名") @RequestParam(name = "name") String name,
         @ApiParam(required = true, name = "身份证号")  @RequestParam(name = "identityCard") String identityCard) {
