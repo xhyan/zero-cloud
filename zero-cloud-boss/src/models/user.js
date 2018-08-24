@@ -5,8 +5,10 @@ export default {
     namespace: 'users',
     state: {
         loading: false,
-        total: 50,
+        total: 0,
+        current: 0,
         list: [],
+        onPageChange:{}
     },
     subscriptions: {
         setup({ dispatch, history }) {
@@ -24,7 +26,11 @@ export default {
             if (data) {
                 yield put({
                     type: 'querySuccess',
-                    payload: {list: data},
+                    payload: {
+                        total: data.total,
+                        current: data.page,
+                        list: data.data
+                    },
                 });
             }
         }

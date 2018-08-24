@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { userContainer } from './index.css';
@@ -8,13 +8,21 @@ function genUsers({ dispatch, users }) {
     const {
         loading,
         total,
+        current,
         list,
     } = users;
 
     const userListProps = {
         loading,
         total,
+        current,
         dataSource: list,
+        onPageChange(page) {
+            dispatch({
+                type: 'users/query',
+                payload: { pageNumber: page }
+            })
+        }
     };
 
     return (
@@ -34,8 +42,8 @@ Users.propTypes = {
     users: PropTypes.object
 };
 
-function mapStateToProps({users}){
-    return {users};
+function mapStateToProps({ users }) {
+    return { users };
 }
 
 export default connect(mapStateToProps)(Users);
