@@ -16,12 +16,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 账户的REST服务
@@ -29,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author xhyan
  */
 @Api(value = "/account", description = "账户相关服务")
+@CrossOrigin
 @RestController
 public class AccountController {
 
@@ -90,8 +86,8 @@ public class AccountController {
      */
     @PostMapping(value = "/task/complete")
     @ApiOperation(notes = "account complete task", httpMethod = "POST", value = "账户完成任务，增加对应能量值")
-    public Integer complete( @ApiParam(required = true, name = "账户id")  @RequestParam("accountId") Long accountId,
-        @ApiParam(required = true, name = "任务id")  @RequestParam("taskId") Long taskId) {
+    public Integer complete( @ApiParam(required = true, value = "账户id")  @RequestParam("accountId") Long accountId,
+        @ApiParam(required = true, value = "任务id")  @RequestParam("taskId") Long taskId) {
         return accountService.completeTask(accountId, taskId);
     }
 
@@ -102,10 +98,10 @@ public class AccountController {
      * @param identityCard
      */
     @ApiOperation(notes = "account certification", httpMethod = "POST", value = "账户实名认证")
-    @GetMapping(value = "/accounts/{accountId}/certification")
-    public void certification( @ApiParam(required = true, name = "账户id") @PathVariable Long accountId,
-        @ApiParam(required = true, name = "姓名") @RequestParam(name = "name") String name,
-        @ApiParam(required = true, name = "身份证号")  @RequestParam(name = "identityCard") String identityCard) {
+    @PostMapping(value = "/accounts/certification")
+    public void certification( @ApiParam(required = true, value = "账户id") @RequestParam(name = "accountId") Long accountId,
+        @ApiParam(required = true, value = "姓名") @RequestParam(name = "name") String name,
+        @ApiParam(required = true, value = "身份证号")  @RequestParam(name = "identityCard") String identityCard) {
         accountService.certification(accountId, name, identityCard);
     }
 
