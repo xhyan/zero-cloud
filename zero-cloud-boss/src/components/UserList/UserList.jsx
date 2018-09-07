@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table, Pagination } from 'antd';
+import { Table, Pagination, Divider } from 'antd';
 import { userList } from './index.css';
 import { PAGE_SIZE } from '../../constants/constants';
 
@@ -9,7 +9,9 @@ const UserList = ({
     total,
     current,
     dataSource,
-    onPageChange
+    onModify,
+    onDetail,
+    onPageChange,
 }) => {
     const columns = [
         {
@@ -33,6 +35,17 @@ const UserList = ({
             dataIndex: 'name',
             key: 'name'
         },
+        {
+            title: '操作',
+            key: 'operation',
+            render: (text, record) => (
+                <p>
+                    <a onClick={()=> onModify(record)}>编辑</a>
+                    <Divider type='vertical' />
+                    <a onClick={() => onDetail(record)}>详情</a>
+                </p>
+            )
+        }
     ];
 
     return (
@@ -60,6 +73,8 @@ UserList.protoTypes = {
     total: PropTypes.number,
     current: PropTypes.number,
     dataSource: PropTypes.array,
+    onModify: PropTypes.func,
+    onDetail: PropTypes.func,
     onPageChange: PropTypes.func,
 };
 

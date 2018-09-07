@@ -8,7 +8,9 @@ export default {
         total: 0,
         current: 0,
         list: [],
-        onPageChange:{}
+        onPageChange:{},
+        editorVisible: false,
+        editorType: 'create'
     },
     subscriptions: {
         setup({ dispatch, history }) {
@@ -39,11 +41,20 @@ export default {
         query(state, action) {
             return {...state, ...action.payload};
         },
+        showEditor(state, action){
+            return {...state, ...action.payload, editorVisible: true};
+        },
+        hideEditor(state, action){
+            return {...state, editorVisible: false};
+        },
         showLoading(state, action){
             return {...state, loading: true};
         },
         querySuccess(state, action){
             return {...state, ...action.payload, loading: false};
         },
+        resetUser(state, action){
+            return {...state, currentItem: {}, editorVisible: false, editorType: 'create'}
+        }
     },
 }
