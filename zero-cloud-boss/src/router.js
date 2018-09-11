@@ -8,7 +8,7 @@ export default function ({ history }) {
   return (
     <Router history={history}>
       <div>
-        <Route path="/users" component={Users} />>
+        <Route path="/users" component={Users} />
     </div>
     </Router>
   );

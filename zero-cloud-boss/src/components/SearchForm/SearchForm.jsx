@@ -2,6 +2,7 @@
 import { Button, Form, Input } from 'antd';
 import { searchForm } from './index.css';
 import PropTypes from 'prop-types';
+import 'antd/dist/antd.css';
 
 
 const FormItem = Form.Item;

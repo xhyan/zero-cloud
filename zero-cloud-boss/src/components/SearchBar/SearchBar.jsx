@@ -6,7 +6,7 @@ const SearchBar =({onAdd, children}) => {
         <div className={search}>
             {children}
             <div className={addButton}>
-                <Button type="primary" onclick={onAdd}>添加</Button>
+                <Button type="primary" onClick={onAdd}>添加</Button>
             </div>
         </div>
     );

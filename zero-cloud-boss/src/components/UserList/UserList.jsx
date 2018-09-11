@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Table, Pagination, Divider } from 'antd';
 import { userList } from './index.css';
 import { PAGE_SIZE } from '../../constants/constants';
+import 'antd/dist/antd.css';
 
 const UserList = ({
     loading,
@@ -39,11 +40,13 @@ const UserList = ({
             title: '操作',
             key: 'operation',
             render: (text, record) => (
-                <p>
-                    <a onClick={()=> onModify(record)}>编辑</a>
-                    <Divider type='vertical' />
-                    <a onClick={() => onDetail(record)}>详情</a>
-                </p>
+                <div>
+                    <p>
+                        <a onClick={() => onModify(record)}>编辑</a>
+                        <Divider type='vertical' />
+                        <a onClick={() => onDetail(record)}>详情</a>
+                    </p>
+                </div>
             )
         }
     ];
@@ -55,11 +58,11 @@ const UserList = ({
                 columns={columns}
                 dataSource={dataSource}
                 loading={loading}
-                pagination= {false}
+                pagination={false}
             />
             <Pagination
-                className="ant-table-pagination" 
-                total={total} 
+                className="ant-table-pagination"
+                total={total}
                 current={parseInt(current, 10)}
                 pageSize={PAGE_SIZE}
                 onChange={onPageChange}

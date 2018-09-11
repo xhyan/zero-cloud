@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
-import { userContainer } from './index.css';
 import UserList from '../../components/UserList/UserList';
-import User from '../../components/AddUser/AddUser';
+import UserForm from '../../components/UserForm/UserForm';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchForm from '../../components/SearchForm/SearchForm';
+import UserTitle from '../../components/UserTitle/UserTitle';
 
 function genUsers({ dispatch, users }) {
     const {
@@ -50,13 +50,13 @@ function genUsers({ dispatch, users }) {
         }
     };
 
-    const userEditor = {
+    const userFormProps = {
         user: editorType === 'create' ? {} : currentItem,
         type: editorType,
         disabled: editorType === 'detail',
         visible: editorVisible,
         onConfirm(data) {
-            console.log(users);
+            console.log(data);
             dispatch({
                 type: `users/${editorType}`,
                 payload: data
@@ -69,12 +69,23 @@ function genUsers({ dispatch, users }) {
         }
     }
 
+    const onAdd = () => {
+        dispatch({
+            type: 'users/showEditor',
+            payload: {
+                editorType: 'create'
+            }
+        });
+    }
 
     const userSearchProps = {
         fieldName: 'userName',
         labelName: '用户名称',
         onSearch(fieldValues) {
-
+            dispatch({
+                type: 'users/query',
+                payload: {}
+            })
         }
     }
 
@@ -85,14 +96,15 @@ function genUsers({ dispatch, users }) {
                     (
                         (
                             <div>
-                                <User {...userEditor} />
+                                <UserTitle/>
+                                <UserForm {...userFormProps} />
                             </div>
                         )
                     )
                     :
                     (
                         <div>
-                            <SearchBar>
+                            <SearchBar onAdd={onAdd}>
                                 <SearchForm {...userSearchProps} />
                             </SearchBar>
                             <UserList {...userListProps} />
