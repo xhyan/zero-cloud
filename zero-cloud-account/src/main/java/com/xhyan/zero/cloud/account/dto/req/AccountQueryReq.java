@@ -11,6 +11,12 @@ import lombok.Data;
  */
 @Data
 public class AccountQueryReq extends ZeroPageReq implements Sortable {
-
-
+    /**
+     * 用户名
+     */
+    private String loginName;
+    /**
+     * 手机号
+     */
+    private String mobile;
 }

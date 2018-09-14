@@ -1,9 +1,7 @@
 package com.xhyan.zero.cloud.account.service;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.PageSerializable;
 import com.xhyan.zero.cloud.account.dto.AccountDTO;
 import com.xhyan.zero.cloud.account.dto.TaskDTO;
 import com.xhyan.zero.cloud.account.dto.req.AccountQueryReq;
@@ -16,19 +14,19 @@ import com.xhyan.zero.cloud.account.model.Account;
 import com.xhyan.zero.cloud.account.model.AccountTask;
 import com.xhyan.zero.cloud.account.model.Task;
 import com.xhyan.zero.cloud.common.dto.ZeroPageInfo;
-import com.xhyan.zero.cloud.common.dto.ZeroPageReq;
 import com.xhyan.zero.cloud.common.enums.ErrorCodeEnum;
-import java.util.List;
-import java.util.stream.Collectors;
 import ma.glasnost.orika.impl.ConfigurableMapper;
-import org.apache.ibatis.session.RowBounds;
+import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.entity.Example.Criteria;
+import tk.mybatis.mapper.util.Sqls;
 import tk.mybatis.mapper.weekend.WeekendSqls;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Account Service
@@ -55,7 +53,7 @@ public class AccountService {
     public void signUp(String mobile, String code) {
         if (!smsService.verify(mobile, VerificationCodeTypeEnum.SIGN_UP, code)) {
             throw new OperationException(ErrorCodeEnum.ERROR_50001.getCode(),
-                ErrorCodeEnum.ERROR_50001.getMsg());
+                    ErrorCodeEnum.ERROR_50001.getMsg());
         }
         Account account = new Account();
         account.setStatus(1);
@@ -73,15 +71,42 @@ public class AccountService {
     }
 
     /**
+     * 创建账户
+     *
+     * @param dto
+     */
+    public void create(AccountDTO dto) {
+        accountMapper.insertSelective(copier.map(dto, Account.class));
+    }
+
+
+    /**
+     * 修改账户信息
+     *
+     * @param dto
+     */
+    public void modify(AccountDTO dto) {
+        accountMapper.updateByPrimaryKeySelective(copier.map(dto, Account.class));
+    }
+
+    /**
      * 分页查询账户信息
      */
     public ZeroPageInfo<AccountDTO> pageList(AccountQueryReq req) {
         PageHelper.startPage(req.getPageNumber(), req.getPageSize());
-        List<Account> accountList = accountMapper.selectAll();
+        WeekendSqls<Account> customWhere = WeekendSqls.custom();
+        if (StringUtils.isNotBlank(req.getLoginName())){
+            customWhere.andLike(Account::getLoginName, "%" + req.getLoginName() + "%");
+        }
+        if (StringUtils.isNotBlank(req.getMobile())){
+            customWhere.andLike(Account::getMobile, "%" + req.getMobile() + "%");
+        }
+        Example example = Example.builder(Account.class).where(customWhere).build();
+        List<Account> accountList = accountMapper.selectByExample(example);
         PageInfo<Account> accounts = PageInfo.of(accountList);
         return ZeroPageInfo.<AccountDTO>builder().total(accounts.getTotal()).page(req.getPageNumber())
-            .data(accounts.getList().stream().map(item -> copier.map(item, AccountDTO.class)).collect(
-                Collectors.toList())).build();
+                .data(accounts.getList().stream().map(item -> copier.map(item, AccountDTO.class)).collect(
+                        Collectors.toList())).build();
     }
 
     /**
@@ -99,13 +124,13 @@ public class AccountService {
         List<AccountTask> accountTasks = accountTaskMapper.queryByAccountId(accountId);
         if (accountTasks.size() > 0) {
             Example example = new Example(Task.class);
-            Criteria criteria = example.createCriteria();
+            Example.Criteria criteria = example.createCriteria();
             criteria.andIn("id",
-                accountTasks.stream().map(AccountTask::getAccountId).collect(Collectors.toList()));
+                    accountTasks.stream().map(AccountTask::getAccountId).collect(Collectors.toList()));
             return taskMapper.selectByExample(example).stream()
-                .map(item -> copier.map(item, TaskDTO.class))
-                .collect(
-                    Collectors.toList());
+                    .map(item -> copier.map(item, TaskDTO.class))
+                    .collect(
+                            Collectors.toList());
         }
         return Lists.newArrayList();
     }

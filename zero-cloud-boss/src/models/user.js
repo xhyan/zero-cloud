@@ -1,4 +1,4 @@
-import { query } from '../services/users';
+import { query, create, modify } from '../services/users';
 import { parse } from 'qs';
 
 export default {
@@ -8,7 +8,7 @@ export default {
         total: 0,
         current: 0,
         list: [],
-        onPageChange:{},
+        onPageChange: {},
         editorVisible: false,
         editorType: 'create'
     },
@@ -35,26 +35,38 @@ export default {
                     },
                 });
             }
+        },
+        *create({ payload }, { call, put }) {
+            yield put({ type: 'hideEditor' });
+            yield call(create, parse(payload));
+            yield put({type: 'query'});
+
+        },
+        *modify({ payload }, { call, put }) {
+            console.log(payload);
+            yield put({ type: 'hideEditor' });
+            yield call(modify, parse(payload));
+            yield put({type: 'query'});
         }
     },
     reducers: {
         query(state, action) {
-            return {...state, ...action.payload};
+            return { ...state, ...action.payload };
         },
-        showEditor(state, action){
-            return {...state, ...action.payload, editorVisible: true};
+        showEditor(state, action) {
+            return { ...state, ...action.payload, editorVisible: true };
         },
-        hideEditor(state, action){
-            return {...state, editorVisible: false};
+        hideEditor(state, action) {
+            return { ...state, editorVisible: false };
         },
-        showLoading(state, action){
-            return {...state, loading: true};
+        showLoading(state, action) {
+            return { ...state, loading: true };
         },
-        querySuccess(state, action){
-            return {...state, ...action.payload, loading: false};
+        querySuccess(state, action) {
+            return { ...state, ...action.payload, loading: false };
         },
-        resetUser(state, action){
-            return {...state, currentItem: {}, editorVisible: false, editorType: 'create'}
+        resetUser(state, action) {
+            return { ...state, currentItem: {}, editorVisible: false, editorType: 'create' }
         }
     },
 }

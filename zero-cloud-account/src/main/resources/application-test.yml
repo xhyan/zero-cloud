@@ -73,7 +73,7 @@ pagehelper:
 mysql:
   url: jdbc:mysql://localhost:3306/cloud_account?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
   user: root
-  password: root
+  password: 1234
 management:
   endpoints:
     web:

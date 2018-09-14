@@ -27,6 +27,11 @@ const UserList = ({
             key: 'loginName'
         },
         {
+            title: '手机号',
+            dataIndex: 'mobile',
+            key: 'mobile'
+        },
+        {
             title: '凭证号',
             dataIndex: 'identityCard',
             key: 'identityCard'

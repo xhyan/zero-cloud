@@ -5,7 +5,6 @@ import UserList from '../../components/UserList/UserList';
 import UserForm from '../../components/UserForm/UserForm';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchForm from '../../components/SearchForm/SearchForm';
-import UserTitle from '../../components/UserTitle/UserTitle';
 
 function genUsers({ dispatch, users }) {
     const {
@@ -38,6 +37,8 @@ function genUsers({ dispatch, users }) {
                     editorType: 'modify'
                 }
             })
+
+            
         },
         onDetail(user) {
             dispatch({
@@ -79,12 +80,13 @@ function genUsers({ dispatch, users }) {
     }
 
     const userSearchProps = {
-        fieldName: 'userName',
-        labelName: '用户名称',
+        fieldName: 'mobile',
+        labelName: '手机号',
         onSearch(fieldValues) {
+            console.log(fieldValues)
             dispatch({
                 type: 'users/query',
-                payload: {}
+                payload: fieldValues
             })
         }
     }
@@ -93,24 +95,13 @@ function genUsers({ dispatch, users }) {
         <div>
             {
                 editorVisible ?
-                    (
-                        (
-                            <div>
-                                <UserTitle/>
-                                <UserForm {...userFormProps} />
-                            </div>
-                        )
-                    )
-                    :
-                    (
-                        <div>
-                            <SearchBar onAdd={onAdd}>
-                                <SearchForm {...userSearchProps} />
-                            </SearchBar>
-                            <UserList {...userListProps} />
-                        </div>
-                    )
+                    <UserForm {...userFormProps} />
+                    : ""
             }
+            <SearchBar onAdd={onAdd}>
+                <SearchForm {...userSearchProps} />
+            </SearchBar>
+            <UserList {...userListProps} />
         </div>
     );
 }

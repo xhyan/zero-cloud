@@ -23,6 +23,11 @@ public class AccountDTO{
      */
     @ApiModelProperty(value = "登录名", required = true)
     private String loginName;
+    /**
+     * 手机号
+     */
+    @ApiModelProperty(value = "手机号", required = true)
+    private String mobile;
 
     /**
      * 登录密码(不可逆加密)
